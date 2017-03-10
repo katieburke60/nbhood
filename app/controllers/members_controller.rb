@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
 
+
   def new
     @member = Member.find_by(account_id: session[:account_id])
     if @member
@@ -7,6 +8,10 @@ class MembersController < ApplicationController
     else
       @member = Member.new
     end
+  end
+  
+  
+  def show
   end
 
   def create
@@ -39,4 +44,6 @@ class MembersController < ApplicationController
   def member_params
     params.require(:member).permit(:name, :about, :age, :hometown, :gender, :relationship_status, :phone)
   end
+
+
 end
