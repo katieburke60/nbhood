@@ -1,0 +1,18 @@
+
+<% if @account.errors.any? %>
+<div id='signup-errors'>
+<%@account.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+  </div>
+  <%end %>
+</div>
+
+<div id='signup'>
+<%= form_for @account, url: signup_path do |f| %>
+  <div>Username: <%= f.text_field :email %></div>
+<div>  Password: <%= f.password_field :password %></div>
+<div>  Password Confirmation: <%= f.password_field :password_confirmation %></div>
+<div><%= f.submit "Submit" %></div>
+<% end %>
+</div>
