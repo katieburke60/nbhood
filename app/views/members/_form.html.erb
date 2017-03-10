@@ -1,13 +1,5 @@
-MAKE A PROFILE
-<% if @member.errors.any? %>
-<div id='profile-errors'>
-<%@member.errors.full_messages.each do |message| %>
-    <p><%= message %></p>
-  <% end %>
-  </div>
-  <%end %>
-</div>
 <%= form_for @member do |f| %>
+
 <div>
   <div><%= f.label :name %>:</div>
   <div><%= f.text_field :name %></div>
@@ -34,5 +26,4 @@ MAKE A PROFILE
 <div><%= f.label :phone %>:</div>
 <div><%= f.phone_field :phone %></div>
 <%= f.submit "Create Profile" %>
-
 <% end %>

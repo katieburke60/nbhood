@@ -10,7 +10,7 @@
 
 <div id='signup'>
 <%= form_for @account, url: signup_path do |f| %>
-  <div>Username: <%= f.text_field :email %></div>
+  <div>Email: <%= f.text_field :email %></div>
 <div>  Password: <%= f.password_field :password %></div>
 <div>  Password Confirmation: <%= f.password_field :password_confirmation %></div>
 <div><%= f.submit "Submit" %></div>
