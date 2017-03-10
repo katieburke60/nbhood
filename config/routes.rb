@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
 
   post '/login', to: 'sessions#create'
-  post '/signup', to: 'registrations#create'
+  post '/signup', to: 'registration#create'
   root 'root#index'
   get '/about', to: 'static#index'
   get '/account', to: 'accounts#show'
