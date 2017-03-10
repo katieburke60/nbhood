@@ -1,0 +1,13 @@
+This is the member show page
+<%=current_member.name%>
+<%=current_member.gender%>
+<%=current_member.age%>
+<%=current_member.relationship_status%>
+<%=current_member.hometown%>
+<%=current_member.phone%>
+<%=current_member.about%>
+
+<%=current_member.rsvps.each do |rsvp|%>
+<%=rsvp%>
+<%end%>
+<%=link_to 'edit', edit_member_path(current_member)%>

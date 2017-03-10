@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20170310154759) do
     t.integer  "price"
     t.string   "price_description"
     t.integer  "capacity"
+    t.boolean  "active"
   end
 
   create_table "members", force: :cascade do |t|
