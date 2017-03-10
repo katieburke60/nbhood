@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :events
+  resources :members
+
+
+  post '/login', to: 'sessions#create'
+  post '/signup', to: 'registrations#create'
+  root 'root#index'
+  get '/about', to: 'static#index'
+
+  get '/account', to 'account#show'
 end
