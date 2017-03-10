@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+members = Member.create([
+  { name: 'Jane', relationship_status: 'red' },
+  { name: 'Joe', relationship_status: 'yellow' },
+  { name: 'Tim', relationship_status: 'green' },
+  { name: 'Melissa', relationship_status: 'green' }
+  ])

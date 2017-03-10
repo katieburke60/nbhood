@@ -1,0 +1,11 @@
+1. View another member's profile
+- Get request for member
+
+
+2. Search for member by name
+- Member index page with a search form
+
+--> Pull all members
+--> Find by name
+--> Redirect to member profile page ('/member/:id')
+--> POST to show page
