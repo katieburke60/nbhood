@@ -1,0 +1,20 @@
+<h1>Find Your Neighbors</h1>
+
+<%= form_tag('members', :method => 'get', :id => 'search form') do %>
+  Search: <%= text_field_tag :search%>
+  <%= submit_tag "Search", :name => nil %>
+  <% end %>
+
+  <% if !@members.blank? %>
+    <% @members.each do |member| %>
+    <%= member.name %>
+    <%= member.relationship_status %>
+    <!-- other attributes -->
+    <% end %>
+  <% end %>
+
+<% if @members.blank? %>
+  <h4>There are no members containing the term <%= @search %></h4>
+<% end %>
+
+<br>

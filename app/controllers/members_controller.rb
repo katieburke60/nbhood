@@ -1,5 +1,13 @@
 class MembersController < ApplicationController
-
+  
+  def index
+      @search = params[:search]
+    if @search
+      @members = Member.where("lower(name) LIKE ?", "%#{@search.downcase}%")
+    else
+      @members = Member.all
+    end
+  end
 
   def new
     @member = Member.find_by(account_id: session[:account_id])
@@ -44,6 +52,5 @@ class MembersController < ApplicationController
   def member_params
     params.require(:member).permit(:name, :about, :age, :hometown, :gender, :relationship_status, :phone)
   end
-
 
 end

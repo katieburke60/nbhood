@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :events
   resources :members
 
-
+  get '/members', to: 'members#index'
   post '/login', to: 'sessions#create'
   post '/signup', to: 'registration#create'
   root 'root#index'
