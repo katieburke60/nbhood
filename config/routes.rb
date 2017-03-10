@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   post '/signup', to: 'registrations#create'
   root 'root#index'
   get '/about', to: 'static#index'
+  get '/account', to: 'accounts#show'
 
-  get '/account', to 'account#show'
 end
