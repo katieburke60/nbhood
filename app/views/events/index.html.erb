@@ -1,0 +1,17 @@
+
+<h4>Search for an event or browse among the list below</h4>
+
+<%= form_tag events_path, method: :get do %>
+<%= label_tag "Search by Name" %>
+<%= text_field_tag 'name' %>
+<%= submit_tag "Search", name: nil %>
+<% end %>
+
+
+<% @events.each do |event| %>
+<label>Name:  </label> <%= event.name %><br />
+<label>Where: </label><%= event.location %><br />
+<label>When:  </label> <%= event.datetime %><br />
+<label>Deal:  </label><%= event.price_description %><br />
+<%= link_to "More Details", event_path(event) %><br /><br />
+<% end %><br />

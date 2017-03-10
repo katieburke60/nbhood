@@ -1,0 +1,10 @@
+<h4><%= @event.name %></h4>
+<label>What:  </label><%= @event.description %><br />
+<label>Where:  </label><%= @event.location %><br />
+<label>When:  </label><%= @event.datetime %><br />
+<label>Why:  </label><%= @event.price_description %><br />
+<label>Signed Up:  </label><%= @event.rsvps.count %><br />
+<label>Capacity:  </label><%= @event.capacity %><br />
+<%= form_for @event, {url: rsvp_path(@event), :method => :post} do |f| %><br />
+<%= f.submit "RSVP" %>
+<% end %>
