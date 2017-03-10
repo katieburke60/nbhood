@@ -9,8 +9,8 @@ class MembersController < ApplicationController
       @member = Member.new
     end
   end
-  
-  
+
+
   def show
   end
 
@@ -27,11 +27,11 @@ class MembersController < ApplicationController
   end
 
   def edit
-    @member = current_user
+    @member = current_member
   end
 
   def update
-    @member = current_user
+    @member = current_member
     if !@member.update(member_params)
       render 'members/edit'
     else

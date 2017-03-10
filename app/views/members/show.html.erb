@@ -1,13 +1,18 @@
-This is the member show page
-<%=current_member.name%>
-<%=current_member.gender%>
-<%=current_member.age%>
-<%=current_member.relationship_status%>
-<%=current_member.hometown%>
-<%=current_member.phone%>
-<%=current_member.about%>
-
-<%=current_member.rsvps.each do |rsvp|%>
+<h1> This is the member show page </h1>
+<div>
+<p>Name: <%=current_member.name.capitalize%></p>
+<p>About Me: <%=current_member.about%></p>
+<p>Gender: <%=current_member.gender.capitalize%></p>
+<p>Age: <%=current_member.age%></p>
+<p>Relationship Status: <%=current_member.relationship_status.capitalize%></p>
+<p>Hometown: <%=current_member.hometown%></p>
+<p>Phone Number: <%=current_member.phone%></p>
+</div>
+<div>
+<%current_member.rsvps.each do |rsvp|%>
 <%=rsvp%>
 <%end%>
-<%=link_to 'edit', edit_member_path(current_member)%>
+</div>
+<div>
+<%=link_to 'Edit Your Profile', edit_member_path(current_member)%>
+</div>
