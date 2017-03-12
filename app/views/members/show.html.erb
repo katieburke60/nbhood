@@ -11,9 +11,18 @@
 </div>
 <div>
 <%current_member.rsvps.each do |rsvp|%>
-<%=rsvp%>
 <%end%>
 </div>
+
+<%= month_calendar events: current_member.rsvps do |date, rsvps| %>
+  <%= date.strftime("%m/%d") %>
+
+  <% rsvps.each do |rsvp| %>
+    <div>
+      <%= link_to rsvp.event.name, rsvp.event %>
+    </div>
+  <% end %>
+<% end %>
 <div>
 <%=link_to 'Edit Your Profile', edit_member_path(current_member)%>
 </div>

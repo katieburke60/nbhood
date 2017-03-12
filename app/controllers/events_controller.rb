@@ -17,15 +17,16 @@ class EventsController < ApplicationController
 
   def rsvp
     @event = Event.find_by(id: params[:id])
-    @member = current_user
+    # byebug
+    @member = current_member
+    @event.check_capacity
     if @event.active
-      Rsvp.create(member_id: @member.id, event_id: @event.id)
+      Rsvp.find_or_create_by(member_id: @member.id, event_id: @event.id)
       flash[:message] = "RSVP successful. Event has been added to your calendar"
       redirect_to @event
     else
       flash[:message] = "There was an error RSVPing - The Event is no longer active"
       render '/events/show'
     end
-
   end
 end
