@@ -1,0 +1,19 @@
+<h1>Find A Business</h1>
+
+<%= form_tag('businesses', :method => 'get', :id => 'search form') do %>
+  Search: <%= text_field_tag :search%>
+  <%= submit_tag "Search", :name => nil %>
+  <% end %>
+
+  <% if !@businesses.blank? %>
+    <% @businesses.each do |business| %>
+    <%= business.name %>
+    <!-- other attributes -->
+    <% end %>
+  <% end %>
+
+<% if @businesses.blank? %>
+  <h4>There are no businesses containing the term <%= @search %></h4>
+<% end %>
+
+<br>

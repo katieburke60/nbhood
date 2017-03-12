@@ -3,7 +3,7 @@ class RegistrationController < ApplicationController
 
   def create
     @account = Account.new(registration_params)
-    if !@account.save!
+    if !@account.save
       render 'root/index'
     else
       session[:account_id] = @account.id
