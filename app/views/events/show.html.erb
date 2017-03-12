@@ -1,3 +1,7 @@
+<% if flash[:alert] %>
+  <div><%= flash[:alert] %></div>
+<% end %>
+
 <h4><%= @event.name %></h4>
 <label>What:  </label><%= @event.description %><br />
 <label>Where:  </label><%= @event.location %><br />
@@ -5,6 +9,12 @@
 <label>Why:  </label><%= @event.price_description %><br />
 <label>Signed Up:  </label><%= @event.rsvps.count %><br />
 <label>Capacity:  </label><%= @event.capacity %><br />
+<% if @rsvp %>
+<%= form_for @event, {url: cancel_rsvp_path(@event, @rsvp), :method => :delete} do |f| %><br />
+<%= f.submit "Cancel" %>
+<% end %>
+<% else %>
 <%= form_for @event, {url: rsvp_path(@event), :method => :post} do |f| %><br />
 <%= f.submit "RSVP" %>
+<% end %>
 <% end %>

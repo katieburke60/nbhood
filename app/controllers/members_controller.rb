@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  
+
   def index
       @search = params[:search]
     if @search
@@ -20,6 +20,7 @@ class MembersController < ApplicationController
 
 
   def show
+    @member = Member.find_by(id: params[:id]) #in case looking at someone else's profile
   end
 
   def create
