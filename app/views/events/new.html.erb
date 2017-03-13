@@ -1,4 +1,11 @@
-<div> Create New Event for <%=  %> </div>
+<% if @event.errors.any? %>
+<div id='signup-errors'>
+  <%@event.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
+  <% end %>
+  </div>
+  <% end %>
+<div> Create New Event for <%= @business.name %> </div>
 <div class="form-group">
 <%= form_for @event do |f| %>
 <div><%= f.label :name %> </div>

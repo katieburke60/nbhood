@@ -29,7 +29,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     time = params.require(:event).permit(:datetime)
     @event.datetime = format_datetime(time[:datetime])
-    @event.business = Business.find(1)
+    @event.business = current_business
     @event.active = true
     category_params.each do |cat_id|
       cat = Category.find_by(id: cat_id)
@@ -44,8 +44,11 @@ class EventsController < ApplicationController
   end
 
   def show
+
     @event = Event.find_by(id: params[:id])
-    @rsvp = Rsvp.find_by(event_id: @event.id, member_id: current_member.id)
+    if is_logged_in?
+      @rsvp = Rsvp.find_by(event_id: @event.id, member_id: current_member.id)
+    end
   end
 
   def rsvp
@@ -87,5 +90,7 @@ class EventsController < ApplicationController
   def category_params
     params.require(:categories)
   end
+
+
 
 end
