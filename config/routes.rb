@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   resources :businesses
 
   get '/businesses/:business_id/event/new', to: 'events#new', as: 'business_new_event'
+  delete '/events', to: 'events#destroy'
 
 end

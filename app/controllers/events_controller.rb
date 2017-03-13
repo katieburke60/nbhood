@@ -67,6 +67,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    Event.find_by(id: params[:id]).destroy
+  end
+
   def destroy_rsvp
     @event = Event.find_by(id: params[:event_id])
     @rsvp = Rsvp.find_by(id: params[:id])
@@ -74,6 +78,7 @@ class EventsController < ApplicationController
     flash[:alert] = "You have successfully cancelled"
     redirect_to event_path(@event)
   end
+
 
   private
 

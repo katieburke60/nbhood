@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170313191145) do
     t.string  "name"
     t.string  "about"
     t.string  "phone"
+    t.string  "neighborhood"
     t.integer "business_account_id"
     t.string  "location"
     t.integer "neighborhood_id"
