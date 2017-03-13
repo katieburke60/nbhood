@@ -58,3 +58,9 @@
 <%= link_to "Unfollow #{@business.name}", unfollow_path(@business) %>
 <% end %>
 </div>
+
+<br /><br />
+
+<div>
+  <%= "#{@business.name} has #{@business.members.count} followers" %>
+</div>
