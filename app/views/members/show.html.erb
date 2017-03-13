@@ -22,7 +22,18 @@
 <% else %>
 <%= "No Upcoming Events" %>
 <% end %>
-<div>
+
+<%= month_calendar events: @member.rsvps do |date, rsvps| %>
+  <%= date.strftime("%m/%d") %>
+
+  <% rsvps.each do |rsvp| %>
+    <div>
+      <%= link_to rsvp.event.name, rsvp.event %>
+    </div>
+  <% end %>
+<% end %>
+
+<br />
 <% @member.rsvps.each do |rsvp|%><br />
 <b><%= rsvp.event.name %></b>
 <%= rsvp.event.description %><br />
@@ -34,8 +45,8 @@
 <%= link_to "RSVP", rsvp_path(rsvp.event) %>
 <% end %><br /><br />
 <%end%>
-</div>
 <br /><br />
+
 <div>
 <% if @member == current_member %>
 <%=link_to 'Edit Your Profile', edit_member_path(current_member)%>

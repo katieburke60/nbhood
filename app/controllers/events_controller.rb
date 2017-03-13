@@ -32,7 +32,9 @@ class EventsController < ApplicationController
 
   def rsvp
     @event = Event.find_by(id: params[:id])
+
     @member = current_member
+    @event.check_capacity
     if @event.active
       Rsvp.find_or_create_by(member_id: @member.id, event_id: @event.id)
       flash[:alert] = "RSVP successful. Event has been added to your calendar"
@@ -41,7 +43,6 @@ class EventsController < ApplicationController
       flash[:alert] = "There was an error RSVPing - The Event is no longer active"
       render '/events/show'
     end
-
   end
 
   def destroy_rsvp
