@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  belongs_to :business
+  # belongs_to :business
   has_many :event_categories
   has_many :categories, through: :event_categories
   has_many :rsvps
@@ -8,8 +8,10 @@ class Event < ApplicationRecord
   def check_capacity
     if rsvps.count >= capacity
       self.active = false
+      self.save
     else
       self.active = true
+      self.save
     end
   end
 

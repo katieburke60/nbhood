@@ -1,5 +1,8 @@
 class BusinessAccountsController < ApplicationController
 
+  def new
+    @business_account = BusinessAccount.new
+  end
 
   def create
     @business_account = BusinessAccount.new(registration_params)

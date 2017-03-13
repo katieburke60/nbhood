@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/about', to: 'static#index'
   get '/account', to: 'accounts#show'
   post '/events/:id/rsvp', to: 'events#rsvp', as: 'rsvp'
+  get '/logout', to: 'sessions#logout', as: 'logout'
 
   post '/business_login', to: 'business_sessions#create'
   delete '/events/:event_id/rsvp/:id', to: 'events#destroy_rsvp', as: 'cancel_rsvp'

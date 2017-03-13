@@ -3,21 +3,20 @@ class EventsController < ApplicationController
   def index
     @events = []
     if params[:name]
-      @events = Event.where("name like ?", "%#{params[:name]}%")
+      @events = Event.where("name like ?", "%#{params[:name]}%").where(active: true)
     elsif params[:categories]
       params[:categories].each do |category_id|
         category = Category.find_by(id: category_id.to_i)
         Event.all.each do |event|
-          @events << event if event.categories.include?(category)
+          @events << event if event.categories.include?(category) && event.active
         end
       end
       @events.uniq!
     else
       Event.all.each do |event|
-        @events << event
+        @events << event if event.active
       end
     end
-  @events.delete_if {|event| !event.active }
   end
 
   def new

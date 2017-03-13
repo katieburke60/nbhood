@@ -1,3 +1,7 @@
+<% if flash[:alert] %>
+<%= flash[:alert] %>
+<% end %>
+
 <%if @account%>
   <% if @account.errors.any? %>
   <div id='signup-errors'>
