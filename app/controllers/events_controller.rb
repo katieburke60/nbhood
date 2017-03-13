@@ -27,7 +27,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    byebug
     @event = Event.new(event_params)
     time = params.require(:event).permit(:datetime)
     @event.datetime = format_datetime(time[:datetime])

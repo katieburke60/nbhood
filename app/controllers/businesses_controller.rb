@@ -18,10 +18,12 @@ class BusinessesController < ApplicationController
   end
 
   def create
-    #binding.pry
     @business = Business.find_by(business_account_id: session[:business_account_id])
     if !@business
       @business = Business.new(business_params)
+      neighborhoods = Neighborhood.where("name like ?", params[:neighborhood])
+      @neighborhood = neighborhoods.first if neighborhoods
+      @business.neighborhood_id = @neighborhood.id
       @business.business_account_id = session[:business_account_id]
       if !@business.save
         render new_business_path and return
