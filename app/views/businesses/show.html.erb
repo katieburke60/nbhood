@@ -4,24 +4,40 @@
 <h1> <%= "Welcome to #{@business.name}'s profile. "%> </h1>
 <% end %>
 
-
+<div class='col-sm-3'>
 <div>
 <p>Name: <%=@business.name.capitalize%></p>
 <p>About Me: <%=@business.about%></p>
 <p>Phone: <%=@business.phone if @business.phone%></p>
-
-</div>
 <div>
   <% if @business.events %>
     <% @business.events.each do |event|%>
-    <%= link_to event.name, event_path(event) %>
-    <%= event.price_description %>
-    <%= event.datetime %>
+    <div>
+    <p><%= link_to event.name, event_path(event) %></p>
+    <p><%= event.price_description %></p>
+    <p><%= event.datetime %></p>
+  </div>
+  <br />
     <%end%>
   <% else %>
   <%= "No Events - Create one!" %>
   <%= link_to "Create Event", business_new_event(@business) %>
   <% end %>
+  </div>
+  </div>
+  </div>
+<div class='col-sm-9'>
+<div>
+<%= month_calendar events: @business.events do |date, events| %>
+  <small><%= date.strftime("%m/%d") %></small>
+
+  <% events.each do |event| %>
+    <div>
+      <%= link_to event.name, event %>
+    </div>
+  <% end %>
+<% end %>
+</div>
 </div>
 <div>
 <% if @business == current_business %>

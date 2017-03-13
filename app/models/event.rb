@@ -16,6 +16,13 @@ class Event < ApplicationRecord
     end
   end
 
+  def check_end_date
+    if self.datetime < Time.now
+      self.active = false
+      self.save
+    end
+  end
+
   def start_time
     self.datetime ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
   end
