@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :business
-  has_many :event_categories
+  has_many :event_categories, dependent: :destroy
   has_many :categories, through: :event_categories
   has_many :rsvps, dependent: :destroy
   has_many :members, through: :rsvps
@@ -17,7 +17,7 @@ class Event < ApplicationRecord
   end
 
   def check_end_date
-    if self.datetime < Time.now
+    if self.datetime < Time.now.to_time
       self.active = false
       self.save
     end

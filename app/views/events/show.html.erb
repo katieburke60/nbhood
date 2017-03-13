@@ -19,8 +19,9 @@
 <%= form_for @event, {url: rsvp_path(@event), :method => :post} do |f| %><br />
 <%= f.submit "RSVP" %>
 <% end %>
-<% if business_logged_in && @event.business == current_business %>
-<%= link_to('Delete', {controller: :events, id: @event.id, action: :destroy}, confirm: "Are you sure you want to delete this?", method: :delete) %>
+
 <% end %>
 <% end %>
+<% if business_logged_in? && @event.business == current_business %>
+<%= link_to 'Delete', @event, method: :delete, data: {confirm: 'Are you sure?' }%>
 <% end %>

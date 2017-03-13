@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :events
   resources :members
   resources :business_accounts, except: :new
-
+  delete '/events/:id', to: 'events#destroy'
   get '/members', to: 'members#index'
   post '/login', to: 'sessions#create'
   post '/signup', to: 'registration#create'
@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   resources :businesses
 
   get '/businesses/:business_id/event/new', to: 'events#new', as: 'business_new_event'
-  delete '/events', to: 'events#destroy'
+
 
 end

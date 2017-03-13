@@ -68,6 +68,7 @@ class EventsController < ApplicationController
 
   def destroy
     Event.find_by(id: params[:id]).destroy
+    redirect_to events_path
   end
 
   def destroy_rsvp
