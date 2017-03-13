@@ -14,7 +14,9 @@
 <%= f.submit "Cancel" %>
 <% end %>
 <% else %>
+<% if is_logged_in? %>
 <%= form_for @event, {url: rsvp_path(@event), :method => :post} do |f| %><br />
 <%= f.submit "RSVP" %>
+<% end %>
 <% end %>
 <% end %>

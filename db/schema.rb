@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170313180507) do
     t.string  "name"
     t.string  "about"
     t.string  "phone"
+    t.string  "neighborhood"
     t.integer "business_account_id"
     t.string  "location"
     t.index ["business_account_id"], name: "index_businesses_on_business_account_id", using: :btree

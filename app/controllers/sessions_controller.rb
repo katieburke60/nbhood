@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
+    session.clear
     account = Account.find_by(email: params[:email])
     if account && account.authenticate(params[:password])
       member=account.member

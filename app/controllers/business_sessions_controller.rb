@@ -1,6 +1,7 @@
 class BusinessSessionsController < ApplicationController
 
   def create
+    session.clear
     business_account = BusinessAccount.find_by(email: params[:email])
     if business_account && business_account.authenticate(params[:password])
       business = business_account.business
