@@ -7,24 +7,27 @@
 
 <div>
 <p>Name: <%=@business.name.capitalize%></p>
-<p>About Me: <%=@business.about%></p>
+<p>About: <%=@business.about%></p>
 <p>Phone: <%=@business.phone if @business.phone%></p>
+<p>Neighborhood: <%=@business.neighborhood.name%></p>
 
 </div>
 <div>
-  <% if @business.events %>
+  <% if @business.events.count > 0 %>
     <% @business.events.each do |event|%>
     <%= link_to event.name, event_path(event) %>
     <%= event.price_description %>
     <%= event.datetime %>
     <%end%>
   <% else %>
-  <%= "No Events - Create one!" %>
-  <%= link_to "Create Event", business_new_event(@business) %>
+  <%= "No Events - Create one!" %><br />
+  <%= link_to "Create Event", business_new_event_path(@business) %>
   <% end %>
 </div>
-<div>
+<div><br /><br />
 <% if @business == current_business %>
 <%=link_to 'Edit Your Profile', edit_business_path(@business)%>
 <% end %>
 </div>
+
+<% if user_logged_in? && @business.followers.include?(current_user) %>

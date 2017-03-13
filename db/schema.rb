@@ -29,10 +29,11 @@ ActiveRecord::Schema.define(version: 20170313191145) do
     t.string  "name"
     t.string  "about"
     t.string  "phone"
-    t.string  "neighborhood"
     t.integer "business_account_id"
     t.string  "location"
+    t.integer "neighborhood_id"
     t.index ["business_account_id"], name: "index_businesses_on_business_account_id", using: :btree
+    t.index ["neighborhood_id"], name: "index_businesses_on_neighborhood_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -68,7 +69,9 @@ ActiveRecord::Schema.define(version: 20170313191145) do
     t.string  "relationship_status"
     t.string  "phone"
     t.string  "hometown"
+    t.integer "neighborhood_id"
     t.index ["account_id"], name: "index_members_on_account_id", using: :btree
+    t.index ["neighborhood_id"], name: "index_members_on_neighborhood_id", using: :btree
   end
 
   create_table "members_follow_businesses", force: :cascade do |t|
@@ -77,11 +80,7 @@ ActiveRecord::Schema.define(version: 20170313191145) do
   end
 
   create_table "neighborhoods", force: :cascade do |t|
-    t.string  "name"
-    t.integer "members_id"
-    t.integer "businesses_id"
-    t.index ["businesses_id"], name: "index_neighborhoods_on_businesses_id", using: :btree
-    t.index ["members_id"], name: "index_neighborhoods_on_members_id", using: :btree
+    t.string "name"
   end
 
   create_table "rsvps", force: :cascade do |t|
@@ -92,11 +91,11 @@ ActiveRecord::Schema.define(version: 20170313191145) do
   end
 
   add_foreign_key "businesses", "business_accounts"
+  add_foreign_key "businesses", "neighborhoods"
   add_foreign_key "event_categories", "categories"
   add_foreign_key "event_categories", "events"
   add_foreign_key "members", "accounts"
-  add_foreign_key "neighborhoods", "businesses", column: "businesses_id"
-  add_foreign_key "neighborhoods", "members", column: "members_id"
+  add_foreign_key "members", "neighborhoods"
   add_foreign_key "rsvps", "events"
   add_foreign_key "rsvps", "members"
 end
