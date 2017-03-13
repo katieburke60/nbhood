@@ -32,6 +32,10 @@
 <%= label_tag(:relationship_status_red, "Red") %></div><br />
 <div><%= f.label :phone %>:</div>
 <div><%= f.phone_field :phone %></div><br />
+<% Neighborhood.all.each do |neighborhood| %>
+<%= radio_button_tag("neighborhood", "#{neighborhood.name}") %>
+<%= label_tag(:neighborhood_name, "#{neighborhood.name}") %>
+<% end %>
 <%= f.submit "Create Profile" %>
 
 <% end %>
