@@ -1,4 +1,4 @@
-MAKE A PROFILE
+<h4>Please Make a Profile Below:</h4>
 <% if @member.errors.any? %>
 <div id='profile-errors'>
 <%@member.errors.full_messages.each do |message| %>
@@ -9,29 +9,29 @@ MAKE A PROFILE
 <%= form_for @member do |f| %>
 <div>
   <div><%= f.label :name %>:</div>
-  <div><%= f.text_field :name %></div>
+  <div><%= f.text_field :name %></div><br />
   <div><%= f.label :about %>:</div>
-<div><%= f.text_field :about %></div>
+<div><%= f.text_field :about %></div><br />
 <div><%= f.label :age %>:</div>
-<div><%= f.number_field :age %></div>
+<div><%= f.number_field :age %></div><br />
 <div><%= f.label :hometown %>:</div>
-<div><%= f.text_field :hometown %></div>
+<div><%= f.text_field :hometown %></div><br />
 <div><%= f.label :gender %></div>
 <div><%= radio_button_tag("member[gender]", "male") %>
 <%= label_tag(:gender_male, "Male") %>
 <%= radio_button_tag("member[gender]", "female") %>
 <%= label_tag(:gender_female, "Female") %>
 <%= radio_button_tag("member[gender]", "other") %>
-<%= label_tag(:gender_other, "Other") %></div>
+<%= label_tag(:gender_other, "Other") %></div><br />
 <div><%= f.label :relationship_status %></div>
 <div><%= radio_button_tag('member[relationship_status', "green") %>
 <%= label_tag(:relationship_status_green, "Green") %>
 <%= radio_button_tag('member[relationship_status', "yellow") %>
 <%= label_tag(:relationship_status_yellow, "Yellow") %>
 <%= radio_button_tag('member[relationship_status', "red") %>
-<%= label_tag(:relationship_status_red, "Red") %></div>
+<%= label_tag(:relationship_status_red, "Red") %></div><br />
 <div><%= f.label :phone %>:</div>
-<div><%= f.phone_field :phone %></div>
+<div><%= f.phone_field :phone %></div><br />
 <%= f.submit "Create Profile" %>
 
 <% end %>

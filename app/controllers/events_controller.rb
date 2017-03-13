@@ -4,29 +4,53 @@ class EventsController < ApplicationController
     @events = []
     if params[:name]
       @events = Event.where("name like ?", "%#{params[:name]}%")
+    elsif params[:categories]
+      params[:categories].each do |category_id|
+        category = Category.find_by(id: category_id.to_i)
+        Event.all.each do |event|
+          @events << event if event.categories.include?(category)
+        end
+      end
+      @events.uniq!
     else
       Event.all.each do |event|
-        @events << event if event.active
+        @events << event
       end
     end
+  @events.delete_if {|event| !event.active }
+  end
+
+  def new
+    @event = Event.new
+    @business = Business.find_by(id: params[:business_id])
   end
 
   def show
     @event = Event.find_by(id: params[:id])
+    @rsvp = Rsvp.find_by(event_id: @event.id, member_id: current_member.id)
   end
 
   def rsvp
     @event = Event.find_by(id: params[:id])
-    # byebug
+
     @member = current_member
     @event.check_capacity
     if @event.active
       Rsvp.find_or_create_by(member_id: @member.id, event_id: @event.id)
-      flash[:message] = "RSVP successful. Event has been added to your calendar"
+      flash[:alert] = "RSVP successful. Event has been added to your calendar"
       redirect_to @event
     else
-      flash[:message] = "There was an error RSVPing - The Event is no longer active"
+      flash[:alert] = "There was an error RSVPing - The Event is no longer active"
       render '/events/show'
     end
   end
+
+  def destroy_rsvp
+    @event = Event.find_by(id: params[:event_id])
+    @rsvp = Rsvp.find_by(id: params[:id])
+    @rsvp.destroy
+    flash[:alert] = "You have successfully cancelled"
+    redirect_to event_path(@event)
+  end
+
 end

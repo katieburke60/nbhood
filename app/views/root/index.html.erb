@@ -1,13 +1,31 @@
-
-
-<% if @account.errors.any? %>
-<div id='signup-errors'>
-<%@account.errors.full_messages.each do |message| %>
+<%if @account%>
+  <% if @account.errors.any? %>
+  <div id='signup-errors'>
+    <%@account.errors.full_messages.each do |message| %>
     <p><%= message %></p>
-  <% end %>
-  </div>
-  <%end %>
+    <% end %>
+    </div>
+    <%end %>
 </div>
+
+<h4>If you have a subscriber account, please log in: </h4>
+<br /><br />
+
+<div id='login'>
+  <%=form_tag login_path do%>
+  <div>Email: <%=text_field_tag :email %></div>
+  <div>Password: <%=password_field_tag :password %></div>
+  <div><%=submit_tag "Log In" %></div>
+<%end%>
+</div>
+<br /><br />
+
+-----------------------------------------
+
+<br />
+
+<h4>If not, we would love to have you. You can create an account below: </h4>
+<br /><br />
 
 <div id='signup'>
 <%= form_for @account, url: signup_path do |f| %>
@@ -17,12 +35,8 @@
 <div><%= f.submit "Submit" %></div>
 <% end %>
 </div>
------------------------------------------
-<div id='login'>
-  <%=form_tag login_path do%>
-  <div>Email: <%=text_field_tag :email %></div>
-  <div>Password: <%=password_field_tag :password %></div>
-  <div><%=submit_tag "log in" %></div>
-<%end%>
-</div>
 
+<div>
+  <%= "Or if you are a business, please sign in or log in at the business homepage" %>
+  <%= link_to "Business Page", new_business_account_path %>
+</div>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_member, :is_logged_in?
+  helper_method :current_member, :is_logged_in?, :current_business, :business_logged_in?
 
     def current_member
       if is_logged_in?
@@ -12,4 +12,14 @@ class ApplicationController < ActionController::Base
        !!session[:account_id]
      end
 
-  end
+     def current_business
+       if business_logged_in?
+          current_business ||= BusinessAccount.find_by_id(session[:business_account_id]).business
+       end
+     end
+
+     def business_logged_in?
+       !!session[:business_account_id]
+     end
+end
+end
