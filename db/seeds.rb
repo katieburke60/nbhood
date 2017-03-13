@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-members = Member.create!([
-  { name: 'afs', relationship_status: 'red' },
-  { name: 'gasa', relationship_status: 'yellow' },
-  { name: 'xasc', relationship_status: 'green' },
-  { name: 'vdava', relationship_status: 'green' }
-  ])
+# members = Member.create!([
+#   { name: 'afs', relationship_status: 'red' },
+#   { name: 'gasa', relationship_status: 'yellow' },
+#   { name: 'xasc', relationship_status: 'green' },
+#   { name: 'vdava', relationship_status: 'green' }
+#   ])
 
 
   events = Event.create!([
