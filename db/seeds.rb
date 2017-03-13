@@ -21,11 +21,33 @@
   #   { name: 'asd', capacity: 5, active: false, location:"80 chambers street", price_description:"buy one drink get one free", datetime: Time.now }
   #   ])
 
+
+  account = Account.create([
+  {email: 'email1@sample.com'},
+  {email: 'email2@sample.com'},
+  {email: 'email3@sample.com'},
+  {email: 'email4@sample.com'},
+  {email: 'email5@sample.com'},
+  {email: 'email6@sample.com'},
+  {email: 'email7@sample.com'},
+  {email: 'email8@sample.com'},
+  {email: 'email9@sample.com'},
+  {email: 'email0@sample.com'}
+  ])
+
+
+
     category = Category.create([
       { name: 'food', description: "food" },
       { name: 'bar', description: "drinks at bar or club" },
       { name: 'service', description: "philanthropic or other service related" },
-      { name: 'outside', description: "outside activities including sport and more relaxing" }
+      { name: 'outside', description: "outside activities including sport and more relaxing"},
+      { name: 'music', description: "music" },
+      { name: 'obscure', description: "unusual things" },
+      { name: 'family-friendly', description: "good for kids" },
+      { name: 'adults-only', description: "use your imagination" },
+      { name: 'theater', description: "live performances" },
+      { name: 'cerebral', description: "deep and thought-provoking" },
       ])
 
       Neighborhood.create([
