@@ -1,20 +1,43 @@
-
-<h1> This is the member show page </h1>
+<% if @member == current_member %>
+<h1> <%= "Welcome #{@member.name}. Your profile is below."%> </h1>
+<% else %>
+<h1> <%= "Welcome to #{@member.name}'s profile. "%> </h1>
+<% end %>
 <div>
 
-<p>Name: <%=current_member.name.capitalize%></p>
-<p>About Me: <%=current_member.about%></p>
-<p>Gender: <%=current_member.gender.capitalize%></p>
-<p>Age: <%=current_member.age%></p>
-<p>Relationship Status: <%=current_member.relationship_status.capitalize%></p>
-<p>Hometown: <%=current_member.hometown%></p>
-<p>Phone Number: <%=current_member.phone%></p>
+<p>Name: <%=@member.name.capitalize%></p>
+<p>About: <%=@member.about%></p>
+<p>Gender: <%=@member.gender.capitalize if @member.gender%></p>
+<p>Age: <%=@member.age%></p>
+<p>Relationship Status: <%=@member.relationship_status.capitalize if @member.relationship_status%></p>
+<p>Hometown: <%=@member.hometown%></p>
+  <p>Phone Number: <%=@member.phone%></p>
 </div>
+<% if @member.rsvps.count > 0 %>
+<% if @member == current_member %>
+<%= "Your Events:" %>
+<% else %>
+<%= "#{@member.name}'s events" %>
+<% end %>
+<% else %>
+<%= "No Upcoming Events" %>
+<% end %>
 <div>
-<%current_member.rsvps.each do |rsvp|%>
-<%=rsvp%>
+<% @member.rsvps.each do |rsvp|%><br />
+<b><%= rsvp.event.name %></b>
+<%= rsvp.event.description %><br />
+<%= rsvp.event.datetime %><br />
+<%= rsvp.event.price_description %><br />
+<%= link_to "More Details", event_path(rsvp.event) %><br />
+<% if @member != current_member %>
+<%= "Or to RSVP: " %>
+<%= link_to "RSVP", rsvp_path(rsvp.event) %>
+<% end %><br /><br />
 <%end%>
 </div>
+<br /><br />
 <div>
+<% if @member == current_member %>
 <%=link_to 'Edit Your Profile', edit_member_path(current_member)%>
+<% end %>
 </div>

@@ -12,3 +12,18 @@ members = Member.create([
   { name: 'Tim', relationship_status: 'green' },
   { name: 'Melissa', relationship_status: 'green' }
   ])
+
+
+  events = Event.create([
+    { name: 'yo', capacity: 20, active: true, location:"50 murray street", price_description:"2 beers for $3" },
+    { name: 'hi', capacity: 60, active: true, location:"11 broadway", price_description:"20 open bar" },
+    { name: 'how', capacity: 100, active: true, location:"20 mott street", price_description:"beer and burger for $5" },
+    { name: 'are', capacity: 5, active: false, location:"80 chambers street", price_description:"buy one drink get one free" }
+    ])
+
+    category = Category.create([
+      { name: 'food', description: "food" },
+      { name: 'bar', description: "drinks at bar or club" },
+      { name: 'service', description: "philanthropic or other service related" },
+      { name: 'outside', description: "outside activities including sport and more relaxing" }
+      ])
