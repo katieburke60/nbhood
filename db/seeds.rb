@@ -14,12 +14,12 @@
 #   ])
 
 
-  events = Event.create!([
-    { name: 'hey', capacity: 20, active: true, location:"50 murray street", price_description:"2 beers for $3", datetime: Time.now },
-    { name: 'hij', capacity: 60, active: true, location:"11 broadway", price_description:"20 open bar", datetime: Time.now},
-    { name: 'ml', capacity: 100, active: true, location:"20 mott street", price_description:"beer and burger for $5", datetime: Time.now },
-    { name: 'asd', capacity: 5, active: false, location:"80 chambers street", price_description:"buy one drink get one free", datetime: Time.now }
-    ])
+  # events = Event.create!([
+  #   { name: 'hey', capacity: 20, active: true, location:"50 murray street", price_description:"2 beers for $3", datetime: Time.now },
+  #   { name: 'hij', capacity: 60, active: true, location:"11 broadway", price_description:"20 open bar", datetime: Time.now},
+  #   { name: 'ml', capacity: 100, active: true, location:"20 mott street", price_description:"beer and burger for $5", datetime: Time.now },
+  #   { name: 'asd', capacity: 5, active: false, location:"80 chambers street", price_description:"buy one drink get one free", datetime: Time.now }
+  #   ])
 
     category = Category.create([
       { name: 'food', description: "food" },
@@ -27,3 +27,7 @@
       { name: 'service', description: "philanthropic or other service related" },
       { name: 'outside', description: "outside activities including sport and more relaxing" }
       ])
+
+      Neighborhood.create([
+        {name: "Tribeca"}, {name: "Soho"}, {name: "East Village"}, {name: "West Village"}
+        ])

@@ -1,4 +1,4 @@
-<%= form_for @member do |f| %>
+<%= form_for member do |f| %>
 
 <div>
   <div><%= f.label :name %>:</div>
@@ -10,11 +10,11 @@
 <div><%= f.label :hometown %>:</div>
 <div><%= f.text_field :hometown %></div>
 <div><%= f.label :gender %></div>
-<div><%= radio_button_tag("member[gender]", "male", !!@member.gender == "male") %>
+<div><%= radio_button_tag("member[gender]", "male", checked: @member.gender == "male") %>
 <%= label_tag(:gender_male, "Male") %>
-<%= radio_button_tag("member[gender]", "female", !!@member.gender == "female") %>
+<%= radio_button_tag("member[gender]", "female", checked: @member.gender == "female") %>
 <%= label_tag(:gender_female, "Female") %>
-<%= radio_button_tag("member[gender]", "other", !!@member.gender == "other") %>
+<%= radio_button_tag("member[gender]", "other", checked: @member.gender == "other") %>
 <%= label_tag(:gender_other, "Other") %></div>
 <div><%= f.label :relationship_status %></div>
 <div><%= radio_button_tag('member[relationship_status', "green", checked: (!!@member.relationship_status == "green") ) %>

@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   has_many :categories, through: :event_categories
   has_many :rsvps
   has_many :members, through: :rsvps
+  delegate :neighborhood, to: :business
 
   def check_capacity
     if rsvps.count >= capacity
