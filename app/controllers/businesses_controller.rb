@@ -26,7 +26,7 @@ class BusinessesController < ApplicationController
       @business.neighborhood_id = @neighborhood.id
       @business.business_account_id = session[:business_account_id]
       if !@business.save
-        render new_businesses_path and return
+        render new_business_path and return
       end
     end
     #binding.pry
