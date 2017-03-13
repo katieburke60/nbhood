@@ -61,24 +61,27 @@
         {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'}
         ])
 
-          ab = Business.create({name: "My Business", about: "a great place", phone: "212-222-1111", location: "123 A Street", neighborhood_id: 1, business_account_id: BusinessAccount.all[0].id})
-          bb = Business.create({name: "None of My Business", about: "a good place", phone: "212-222-1112", location: "123 B Street", neighborhood_id: 2, business_account_id:BusinessAccount.all[1].id})
-          cb = Business.create({name: "Your Business", about: "an okay place", phone: "212-222-1113", location: "123 C Street", neighborhood_id: 3, business_account_id:BusinessAccount.all[2].id})
-          db = Business.create({name: "None of Your Business", about: "don't ask" , phone: "212-222-1114", location: "123 D Street", neighborhood_id: 4, business_account_id:BusinessAccount.all[3].id})
-          eb = Business.create({name: "Buy Here", about: "please do", phone: "212-222-1115", location: "123 E Street", neighborhood_id: 5, business_account_id:BusinessAccount.all[4].id})
-          fb = Business.create({name: "Spendee", about: "we charge a lot", phone: "212-222-1116", location: "123 F Street", neighborhood_id: 6, business_account_id:BusinessAccount.all[5].id})
-          gb = Business.create({name: "Cheapee", about: "we only charge a bit", phone: "212-222-1117", location: "123 G Street", neighborhood_id: 7, business_account_id:BusinessAccount.all[6].id})
-          hb = Business.create({name: "World's Best", about: "gotta be good", phone: "212-222-1118", location: "123 H Street", neighborhood_id: 1, business_account_id:BusinessAccount.all[7].id})
-          ib = Business.create({name: "Pretty Good", about: "not great", phone: "212-222-1119", location: "123 I Street", neighborhood_id: 2, business_account_id:BusinessAccount.all[8].id})
-          jb = Business.create({name: "Not Bad", about: "could be worse", phone: "212-222-1120", location: "123 J Street", neighborhood_id: 3, business_account_id:BusinessAccount.all[9].id})
+
+
+              neighborhoods = Neighborhood.create([
+                {name: "Tribeca"}, {name: "Soho"}, {name: "East Village"}, {name: "West Village"},
+                {name: "Financial District"},{name: "East Harlem"}, {name: "Washington Heights"}
+                ])
+
+          ab = Business.create({name: "My Business", about: "a great place", phone: "212-222-1111", location: "123 A Street", neighborhood_id: Neighborhood.all[0].id, business_account_id: BusinessAccount.all[0].id})
+          bb = Business.create({name: "None of My Business", about: "a good place", phone: "212-222-1112", location: "123 B Street", neighborhood_id: Neighborhood.all[1].id, business_account_id:BusinessAccount.all[1].id})
+          cb = Business.create({name: "Your Business", about: "an okay place", phone: "212-222-1113", location: "123 C Street", neighborhood_id: Neighborhood.all[2].id, business_account_id:BusinessAccount.all[2].id})
+          db = Business.create({name: "None of Your Business", about: "don't ask" , phone: "212-222-1114", location: "123 D Street", neighborhood_id: Neighborhood.all[3].id, business_account_id:BusinessAccount.all[3].id})
+          eb = Business.create({name: "Buy Here", about: "please do", phone: "212-222-1115", location: "123 E Street", neighborhood_id: Neighborhood.all[4].id, business_account_id:BusinessAccount.all[4].id})
+          fb = Business.create({name: "Spendee", about: "we charge a lot", phone: "212-222-1116", location: "123 F Street", neighborhood_id: Neighborhood.all[5].id, business_account_id:BusinessAccount.all[5].id})
+          gb = Business.create({name: "Cheapee", about: "we only charge a bit", phone: "212-222-1117", location: "123 G Street", neighborhood_id: Neighborhood.all[6].id, business_account_id:BusinessAccount.all[6].id})
+          hb = Business.create({name: "World's Best", about: "gotta be good", phone: "212-222-1118", location: "123 H Street", neighborhood_id: Neighborhood.all[0].id, business_account_id:BusinessAccount.all[7].id})
+          ib = Business.create({name: "Pretty Good", about: "not great", phone: "212-222-1119", location: "123 I Street", neighborhood_id: Neighborhood.all[1].id, business_account_id:BusinessAccount.all[8].id})
+          jb = Business.create({name: "Not Bad", about: "could be worse", phone: "212-222-1120", location: "123 J Street", neighborhood_id: Neighborhood.all[2].id, business_account_id:BusinessAccount.all[9].id})
 
 
 
 
-      neighborhoods = Neighborhood.create([
-        {name: "Tribeca"}, {name: "Soho"}, {name: "East Village"}, {name: "West Village"},
-        {name: "Financial District"},{name: "East Harlem"}, {name: "Washington Heights"}
-        ])
 
         asdf = {datetime: Time.now, name: "party", description: "a fun time", location: "Tribeca street", price: 10, price_description: "Door charge", capacity: 100, active: true, business_id: Business.all[0].id }
         b = {datetime: Time.now, name: "book group", description: "let's read and discuss" , location: "Soho alley", price: 20, price_description: "Host fee", capacity: 90, active: true, business_id:  Business.all[1].id }
@@ -170,9 +173,9 @@
               eb.neighborhood_id = Neighborhood.all[4].id
               fb.neighborhood_id = Neighborhood.all[5].id
               gb.neighborhood_id = Neighborhood.all[6].id
-              hb.neighborhood_id = Neighborhood.all[7].id
-              ib.neighborhood_id = Neighborhood.all[8].id
-              jb.neighborhood_id = Neighborhood.all[9].id
+              hb.neighborhood_id = Neighborhood.all[0].id
+              ib.neighborhood_id = Neighborhood.all[1].id
+              jb.neighborhood_id = Neighborhood.all[2].id
 
               ab.save
               bb.save
