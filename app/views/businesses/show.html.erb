@@ -1,0 +1,16 @@
+<h1> This is the business show page </h1>
+<div>
+<p>Name: <%=current_business.name.capitalize%></p>
+<p>About Me: <%=current_business.about%></p>
+<p>Phone: <%=current_business.phone%></p>
+
+<p>Neighborhood: <%=current_business.neighborhood%></p>
+</div>
+<div>
+<%current_business.events.each do |event|%>
+<%=event%>
+<%end%>
+</div>
+<div>
+<%=link_to 'Edit Your Profile', edit_business_path(current_business)%>
+</div>

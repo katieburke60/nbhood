@@ -4,13 +4,14 @@
 <h1> <%= "Welcome to #{@member.name}'s profile. "%> </h1>
 <% end %>
 <div>
+
 <p>Name: <%=@member.name.capitalize%></p>
 <p>About: <%=@member.about%></p>
 <p>Gender: <%=@member.gender.capitalize if @member.gender%></p>
 <p>Age: <%=@member.age%></p>
 <p>Relationship Status: <%=@member.relationship_status.capitalize if @member.relationship_status%></p>
 <p>Hometown: <%=@member.hometown%></p>
-<p>Phone Number: <%=@member.phone%></p>
+  <p>Phone Number: <%=@member.phone%></p>
 </div>
 <% if @member.rsvps.count > 0 %>
 <% if @member == current_member %>

@@ -1,12 +1,11 @@
-
-
-<% if @account.errors.any? %>
-<div id='signup-errors'>
-<%@account.errors.full_messages.each do |message| %>
+<%if @account%>
+  <% if @account.errors.any? %>
+  <div id='signup-errors'>
+    <%@account.errors.full_messages.each do |message| %>
     <p><%= message %></p>
-  <% end %>
-  </div>
-  <%end %>
+    <% end %>
+    </div>
+    <%end %>
 </div>
 
 <h4>If you have an account, please log in: </h4>

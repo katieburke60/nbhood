@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310154759) do
+ActiveRecord::Schema.define(version: 20170312151949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,20 @@ ActiveRecord::Schema.define(version: 20170310154759) do
   create_table "accounts", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
+  end
+
+  create_table "business_accounts", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.string  "name"
+    t.string  "about"
+    t.string  "phone"
+    t.string  "neighborhood"
+    t.integer "business_account_id"
+    t.index ["business_account_id"], name: "index_businesses_on_business_account_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -41,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170310154759) do
     t.string   "price_description"
     t.integer  "capacity"
     t.boolean  "active"
+    t.integer  "business_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -55,6 +70,11 @@ ActiveRecord::Schema.define(version: 20170310154759) do
     t.index ["account_id"], name: "index_members_on_account_id", using: :btree
   end
 
+  create_table "members_follow_businesses", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "business_id"
+  end
+
   create_table "rsvps", force: :cascade do |t|
     t.integer "member_id"
     t.integer "event_id"
@@ -62,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170310154759) do
     t.index ["member_id"], name: "index_rsvps_on_member_id", using: :btree
   end
 
+  add_foreign_key "businesses", "business_accounts"
   add_foreign_key "event_categories", "categories"
   add_foreign_key "event_categories", "events"
   add_foreign_key "members", "accounts"
