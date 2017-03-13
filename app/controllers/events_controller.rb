@@ -20,6 +20,11 @@ class EventsController < ApplicationController
   @events.delete_if {|event| !event.active }
   end
 
+  def new
+    @event = Event.new
+    @business = Business.find_by(id: params[:business_id])
+  end
+
   def show
     @event = Event.find_by(id: params[:id])
     @rsvp = Rsvp.find_by(event_id: @event.id, member_id: current_member.id)
@@ -29,7 +34,7 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params[:id])
     @member = current_member
     if @event.active
-      Rsvp.create(member_id: @member.id, event_id: @event.id)
+      Rsvp.find_or_create_by(member_id: @member.id, event_id: @event.id)
       flash[:alert] = "RSVP successful. Event has been added to your calendar"
       redirect_to @event
     else

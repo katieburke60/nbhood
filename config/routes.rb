@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 
   post '/business_login', to: 'business_sessions#create'
   delete '/events/:event_id/rsvp/:id', to: 'events#destroy_rsvp', as: 'cancel_rsvp'
+  get '/businesses/:business_id/event/new', to: 'event#new', as: 'business_new_event'
+  get '/businesses/signup', to: 'business_account#new', as: 'new_business_account'
 end

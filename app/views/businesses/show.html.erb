@@ -1,16 +1,30 @@
-<h1> This is the business show page </h1>
-<div>
-<p>Name: <%=current_business.name.capitalize%></p>
-<p>About Me: <%=current_business.about%></p>
-<p>Phone: <%=current_business.phone%></p>
+<% if @business == current_business %>
+<h1> <%= "Welcome #{@business.name}. Your profile is below."%> </h1>
+<% else %>
+<h1> <%= "Welcome to #{@business.name}'s profile. "%> </h1>
+<% end %>
 
-<p>Neighborhood: <%=current_business.neighborhood%></p>
+
+<div>
+<p>Name: <%=@business.name.capitalize%></p>
+<p>About Me: <%=@business.about%></p>
+<p>Phone: <%=@business.phone if @business.phone%></p>
+
 </div>
 <div>
-<%current_business.events.each do |event|%>
-<%=event%>
-<%end%>
+  <% if @business.events %>
+    <% @business.events.each do |event|%>
+    <%= link_to event.name, event_path(event) %>
+    <%= event.price_description %>
+    <%= event.datetime %>
+    <%end%>
+  <% else %>
+  <%= "No Events - Create one!" %>
+  <%= link_to "Create Event", business_new_event(@business) %>
+  <% end %>
 </div>
 <div>
-<%=link_to 'Edit Your Profile', edit_business_path(current_business)%>
+<% if @business == current_business %>
+<%=link_to 'Edit Your Profile', edit_business_path(@business)%>
+<% end %>
 </div>

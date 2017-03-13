@@ -8,7 +8,7 @@
     <%end %>
 </div>
 
-<h4>If you have an account, please log in: </h4>
+<h4>If you have a subscriber account, please log in: </h4>
 <br /><br />
 
 <div id='login'>
@@ -34,4 +34,9 @@
 <div>  Password Confirmation: <%= f.password_field :password_confirmation %></div>
 <div><%= f.submit "Submit" %></div>
 <% end %>
+</div>
+
+<div>
+  <%= "Or if you are a business, please sign in or log in at the business homepage" %>
+  <%= link_to "Business Page", new_business_account_path %>
 </div>
