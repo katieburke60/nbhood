@@ -21,7 +21,26 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @business = Business.find_by(id: params[:business_id])
+    @business = current_business
+  end
+
+  def create
+    byebug
+    @event = Event.new(event_params)
+    time = params.require(:event).permit(:datetime)
+    @event.datetime = format_datetime(time[:datetime])
+    @event.business = Business.find(1)
+    @event.active = true
+    category_params.each do |cat_id|
+      cat = Category.find_by(id: cat_id)
+      @event.categories << cat if !!cat
+    end
+    if !@event.save
+      byebug
+      render 'events/new'
+    else
+      redirect_to events_path
+    end
   end
 
   def show
@@ -31,7 +50,6 @@ class EventsController < ApplicationController
 
   def rsvp
     @event = Event.find_by(id: params[:id])
-
     @member = current_member
     @event.check_capacity
     if @event.active
@@ -50,6 +68,24 @@ class EventsController < ApplicationController
     @rsvp.destroy
     flash[:alert] = "You have successfully cancelled"
     redirect_to event_path(@event)
+  end
+
+  private
+
+  def format_datetime(time)
+    time = time[0...-3].split
+    splat = time[0].split('/')
+    splat.unshift(splat.pop)
+    time[0] = splat.join('-')
+    time = time.join(' ')
+  end
+
+  def event_params
+    params.require(:event).permit(:name, :description, :price, :price_description, :capacity)
+  end
+
+  def category_params
+    params.require(:categories)
   end
 
 end
