@@ -10,4 +10,4 @@ class ApplicationController < ActionController::Base
        current_member != nil
      end
 
-  end
+end
