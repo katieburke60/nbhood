@@ -1,3 +1,7 @@
+<div>
+  <%= flash[:message] %>
+</div>
+
 <% if @business == current_business %>
 <h1> <%= "Welcome #{@business.name}. Your profile is below."%> </h1>
 <% else %>
@@ -48,4 +52,10 @@
 <% end %>
 </div>
 
-<% if user_logged_in? && @business.followers.include?(current_user) %>
+<div>
+<% if is_logged_in? && !@business.members.include?(current_member) %>
+<%= link_to "Follow #{@business.name}", follow_path(@business) %>
+<% elsif is_logged_in? %>
+<%= link_to "Unfollow #{@business.name}", unfollow_path(@business) %>
+<% end %>
+</div>
