@@ -7,7 +7,7 @@
 
   <% if !@businesses.blank? %>
     <% @businesses.each do |business| %>
-    <%= business.name %>
+    <%= link_to business.name, business_path(business) %>
     <!-- other attributes -->
     <% end %>
   <% end %>

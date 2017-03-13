@@ -4,8 +4,10 @@ class Member < ApplicationRecord
   has_many :rsvps
   has_many :events, through: :rsvps
   has_many :categories, through: :events
+
   belongs_to :account
   belongs_to :neighborhood
+
 
 
   def self.search(search)

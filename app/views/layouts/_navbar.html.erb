@@ -11,20 +11,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
     <ul class="nav navbar-nav">
       <li <%= 'class=active' if request.path.split('/')[1] == 'events' || request.path == '/' %>><a href="/events">Events</a></li>
-
-
     </ul>
-
-
-
-
-
     <ul class="nav navbar-nav navbar-right">
-
-
   <li><a href="/events" data-turbolinks="false">Find Events</a></li>
-
-
 
       <% if is_logged_in? %>
       <li class="dropdown">
@@ -35,6 +24,23 @@
             <% end %>
           <li><a href="/events">My Events</a></li>
           <li><a href="#">Friends</a></li>
+          <li role="separator" class="divider"></li>
+          <li>
+            <%= link_to "Logout", logout_path %>
+          </li>
+          <!-- <li></li> -->
+        </ul>
+      </li>
+      <% elsif business_logged_in? %>
+        <li><a href="/events/new" data-turbolinks="false">Create an Event</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=BusinessAccount.find_by(id: session[:business_account_id]).email%><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><% if current_business %>
+            <a href="/businesses/<%= current_business.id%>">Business Profile</a></li>
+            <% end %>
+          <li><a href="/events">My Business's Events</a></li>
+          <li><a href="#">My Followers</a></li>
           <li role="separator" class="divider"></li>
           <li>
             <%= link_to "Logout", logout_path %>
