@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   delete '/events/:event_id/rsvp/:id', to: 'events#destroy_rsvp', as: 'cancel_rsvp'
   get '/businesses/signup', to: 'business_accounts#new', as: 'new_business_account'
   post 'businesses/signup', to: 'business_accounts#create'
+  get '/business/:id/follow', to: 'followers#create', as: 'follow'
+  get '/business/:id/unfollow', to: 'followers#destroy', as: 'unfollow'
+
   resources :businesses
 
   get '/businesses/:business_id/event/new', to: 'events#new', as: 'business_new_event'
