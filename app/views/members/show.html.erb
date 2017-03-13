@@ -3,6 +3,7 @@
 <% else %>
 <h1> <%= "Welcome to #{@member.name}'s profile. "%> </h1>
 <% end %>
+<div class='col-sm-3'>
 <div>
 
 <p>Name: <%=@member.name.capitalize%></p>
@@ -13,19 +14,6 @@
 <p>Hometown: <%=@member.hometown%></p>
   <p>Phone Number: <%=@member.phone%></p>
 </div>
-<%= member_rsvps_heading %>
-
-<%= month_calendar events: @member.rsvps do |date, rsvps| %>
-  <%= date.strftime("%m/%d") %>
-
-  <% rsvps.each do |rsvp| %>
-    <div>
-      <%= link_to rsvp.event.name, rsvp.event %>
-    </div>
-  <% end %>
-<% end %>
-
-<br />
 <% @member.rsvps.each do |rsvp|%><br />
 <b><%= rsvp.event.name %></b>
 <%= rsvp.event.description %><br />
@@ -42,6 +30,23 @@
 <%end%>
 <% end %>
 <br /><br />
+
+</div>
+<div class='col-sm-9'>
+<%= member_rsvps_heading %>
+
+<%= month_calendar events: @member.rsvps do |date, rsvps| %>
+  <%= date.strftime("%m/%d") %>
+
+  <% rsvps.each do |rsvp| %>
+    <div>
+      <%= link_to rsvp.event.name, rsvp.event %>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<br />
 
 <div>
 <% if @member == current_member %>
