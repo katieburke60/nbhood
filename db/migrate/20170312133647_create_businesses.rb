@@ -4,7 +4,6 @@ class CreateBusinesses < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :about
       t.string :phone
-      t.string :neighborhood
     end
   end
 end

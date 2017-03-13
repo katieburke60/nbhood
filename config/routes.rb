@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :events
   resources :members
   resources :businesses
-  resources :business_accounts
 
   get '/members', to: 'members#index'
   post '/login', to: 'sessions#create'

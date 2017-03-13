@@ -40,7 +40,9 @@
 <%= rsvp.event.datetime %><br />
 <%= rsvp.event.price_description %><br />
 <%= link_to "More Details", event_path(rsvp.event) %><br />
-<% if @member != current_member %>
+<% if @member != current_member && rsvp.event.members.include?(@member) %>
+<%= link_to "Cancel", cancel_rsvp_path(rsvp.event, rsvp) %>
+<% else %>
 <%= "Or to RSVP: " %>
 <%= link_to "RSVP", rsvp_path(rsvp.event) %>
 <% end %><br /><br />

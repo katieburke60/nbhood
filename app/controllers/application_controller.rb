@@ -21,5 +21,5 @@ class ApplicationController < ActionController::Base
      def business_logged_in?
        !!session[:business_account_id]
      end
-end
+
 end
