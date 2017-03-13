@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
     def current_member
       if is_logged_in?
-        current_member ||= Account.find_by_id(session[:account_id]).member
+        Account.find_by_id(session[:account_id]).member
       end
     end
 

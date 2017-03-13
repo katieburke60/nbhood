@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312151949) do
+ActiveRecord::Schema.define(version: 20170313191145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170312151949) do
     t.string  "about"
     t.string  "phone"
     t.integer "business_account_id"
+    t.string  "location"
     t.index ["business_account_id"], name: "index_businesses_on_business_account_id", using: :btree
   end
 
@@ -74,6 +75,14 @@ ActiveRecord::Schema.define(version: 20170312151949) do
     t.integer "business_id"
   end
 
+  create_table "neighborhoods", force: :cascade do |t|
+    t.string  "name"
+    t.integer "members_id"
+    t.integer "businesses_id"
+    t.index ["businesses_id"], name: "index_neighborhoods_on_businesses_id", using: :btree
+    t.index ["members_id"], name: "index_neighborhoods_on_members_id", using: :btree
+  end
+
   create_table "rsvps", force: :cascade do |t|
     t.integer "member_id"
     t.integer "event_id"
@@ -85,6 +94,8 @@ ActiveRecord::Schema.define(version: 20170312151949) do
   add_foreign_key "event_categories", "categories"
   add_foreign_key "event_categories", "events"
   add_foreign_key "members", "accounts"
+  add_foreign_key "neighborhoods", "businesses", column: "businesses_id"
+  add_foreign_key "neighborhoods", "members", column: "members_id"
   add_foreign_key "rsvps", "events"
   add_foreign_key "rsvps", "members"
 end

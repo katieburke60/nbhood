@@ -5,16 +5,12 @@
 <%= form_tag events_path, method: :get do %>
 <%= label_tag "Search by Name" %>
 <%= text_field_tag 'name' %>
-<%= submit_tag "Search", name: nil %>
-<% end %>
 <br />
 <%= "Filter by Category:" %>
-<%= form_tag events_path, method: :get do %>
-<% Category.all.each do |category| %>
-<%= check_box_tag "categories[]", category.id, false %>
-<%= label_tag category.name %>
-<% end %><br />
-<%= submit_tag "Filter", name: nil %>
+
+<%= collection_check_boxes(:event, :category_ids, Category.all, :id, :name) %>
+<br />
+<%= submit_tag "Search", name: nil %>
 <% end %>
 
 
