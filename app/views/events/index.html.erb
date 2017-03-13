@@ -24,6 +24,8 @@
 <% end %>
 
 <% @events.each do |event| %>
+<% event.check_end_date %>
+<% event.check_capacity %>
 <label>Name:  </label> <%= event.name %><br />
 <label>Where: </label><%= event.location %><br />
 <label>When:  </label> <%= event.datetime %><br />
