@@ -1,4 +1,4 @@
-MAKE A BUSINESS PROFILE
+<h1>MAKE A BUSINESS PROFILE</h1>
 <% if @business.errors.any? %>
 <div id='profile-errors'>
 <%@business.errors.full_messages.each do |message| %>
@@ -6,15 +6,16 @@ MAKE A BUSINESS PROFILE
   <% end %>
   </div>
   <%end %>
-</div>
+
 <%= form_for @business do |f| %>
-<div>
+
+
   <div><%= f.label :name %>:</div>
   <div><%= f.text_field :name %></div>
   <div><%= f.label :about %>:</div>
 <div><%= f.text_field :about %></div>
-<div><%= f.label :neighborhood %>:</div>
-<div><%= f.text_field :neighborhood %></div>
+<div><%= f.label :location %>:</div>
+<div><%= f.text_field :location %></div>
 <div><%= f.label :phone %>:</div>
 <div><%= f.phone_field :phone %></div>
 <%= f.submit %>
