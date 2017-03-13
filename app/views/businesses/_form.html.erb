@@ -18,5 +18,9 @@
 <div><%= f.text_field :location %></div>
 <div><%= f.label :phone %>:</div>
 <div><%= f.phone_field :phone %></div>
+<% Neighborhood.all.each do |neighborhood| %>
+<%= radio_button_tag("neighborhood", "#{neighborhood.name}") %>
+<%= label_tag(:neighborhood_name, "#{neighborhood.name}") %>
+<% end %>
 <%= f.submit %>
 <% end %>
