@@ -1,22 +1,30 @@
 class EventsController < ApplicationController
 
   def index
-    @events = []
-    @category_ids = []
-    if params[:name]
+    # @category_ids = params[:categories]
+    if !params[:name].blank?
       @events = Event.where("name like ?", "%#{params[:name]}%").where(active: true)
-    elsif params[:categories]
+    end
+    if params[:categories]
       params[:categories].each do |category_id|
-        category = Category.find_by(id: category_id.to_i)
-        @event.category_ids << category.id
-        Event.all.each do |event|
-          @events << event if event.categories.include?(category) && event.active
-        end
+        @events_cat = Event.joins(:event_categories).where("category_id = ?", category_id.to_i)
       end
-      @events.uniq!
-    else
+    end
+    if @events_cat && !@events
+      @events = @events_cat.uniq
+    elsif @events_cat && @events
+      @events.map do |event|
+        event if @events_cat.include?(event)
+      end
+    end
+
+    if !@events
+      @events = []
       Event.all.each do |event|
         @events << event if event.active
+      end
+      if params[:name] || params[:categories]
+        flash[:alert] = "No Results were found"
       end
     end
   end

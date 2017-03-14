@@ -1,3 +1,5 @@
+<% flash[:alert] %>
+
 
 <h4>Search for an event or browse among the list below</h4>
 <br />
@@ -6,9 +8,11 @@
 <%= label_tag "Search by Name" %>
 <%= text_field_tag 'name' %>
 <br />
-<%= "Filter by Category:" %>
-
-<%= collection_check_boxes(:event, :category_ids, Category.all, :id, :name) %>
+<%= "and / or Filter by Category:" %><br />
+<% Category.all.each do |category| %>
+<%= label_tag category.name %>
+<%= check_box_tag "categories[]", category.id  %>
+<% end %>
 <br />
 <%= submit_tag "Search", name: nil %>
 <% end %>
@@ -30,5 +34,7 @@
 <label>Where: </label><%= event.location %><br />
 <label>When:  </label> <%= event.datetime %><br />
 <label>Deal:  </label><%= event.price_description %><br />
+<label>Categories:</label><% event.categories.each do |category|  %>
+<%= category.name %><% end %>
 <%= link_to "More Details", event_path(event) %><br /><br />
 <% end %><br />
