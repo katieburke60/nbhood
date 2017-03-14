@@ -1,0 +1,20 @@
+<div class="modal fade bd-signup-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" style="text-align:center" id="exampleModalLabel">Sign Up</h3>
+      </div>
+        <div class="form-group">
+          <div id='signup' style="text-align:center">
+      <%= form_for @account, url: signup_path do |f| %>
+        <div>Email: <%= f.text_field :email, {class: "form-control"} %></div>
+      <div>  Password: <%= f.password_field :password, {class: "form-control"} %></div>
+      <div>  Password Confirmation: <%= f.password_field :password_confirmation, {class: "form-control"} %></div>
+      <br />
+      <div><%= f.submit "Submit" %></div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

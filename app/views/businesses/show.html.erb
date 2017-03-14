@@ -9,31 +9,31 @@
 <% end %>
 
 <div class='col-sm-3'>
-<div>
-<p>Name: <%=@business.name.capitalize%></p>
-<p>About: <%=@business.about%></p>
-<p>Phone: <%=@business.phone if @business.phone%></p>
-<p>Neighborhood: <%=@business.neighborhood.name%></p>
+  <div>
+    <p>Name: <%=@business.name.capitalize%></p>
+    <p>About: <%=@business.about%></p>
+    <p>Phone: <%=@business.phone if @business.phone%></p>
+    <p>Neighborhood: <%=@business.neighborhood.name%></p>
 
-</div>
+  </div>
 <div>
   <% if @business.events.count > 0 %>
     <% @business.events.each do |event|%>
     <div>
-    <p><%= link_to event.name, event_path(event) %></p>
-    <p><%= event.price_description %></p>
-    <p><%= event.datetime %></p>
-  </div>
-  <br />
+      <p><%= link_to event.name, event_path(event) %></p>
+      <p><%= event.price_description %></p>
+      <p><%= event.datetime %></p>
+    </div>
+    <br />
     <%end%>
   <% else %>
   <%= "No Events - Create one!" %><br />
   <%= link_to "Create Event", business_new_event_path(@business) %>
   <% end %>
+    </div>
   </div>
-  </div>
-<div class='col-sm-9'>
-<div>
+  <div class='col-sm-9'>
+    <div>
 <%= month_calendar events: @business.events do |date, events| %>
   <small><%= date.strftime("%m/%d") %></small>
 
