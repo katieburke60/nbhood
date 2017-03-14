@@ -63,7 +63,7 @@
 <%= member_rsvps_heading %>
 
 <%= month_calendar events: @member.rsvps do |date, rsvps| %>
-  <%= date.strftime("%m/%d") %>
+  <small><%= date.strftime("%m/%d") %></small>
 
   <% rsvps.each do |rsvp| %>
     <div>
