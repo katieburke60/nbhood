@@ -35,6 +35,6 @@
 <label>When:  </label> <%= event.datetime %><br />
 <label>Deal:  </label><%= event.price_description %><br />
 <label>Categories:</label><% event.categories.each do |category|  %>
-<%= category.name %><% end %>
+<%= link_to category.name.capitalize, category_show_path(category) %><% end %><br />
 <%= link_to "More Details", event_path(event) %><br /><br />
 <% end %><br />

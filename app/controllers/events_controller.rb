@@ -87,6 +87,15 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
+  def category
+    @category = Category.find_by(id: params[:category_id])
+    if @category
+      @events = @category.events
+    else
+      redirect_to events_path, alert: "This category does not exist"
+    end
+  end
+
 
   private
 
