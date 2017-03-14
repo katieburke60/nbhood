@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
   get '/events/categories/:category_id', to: 'events#category', as: 'category_show'
+  get '/events/followers', to: "events#followers", as: "followers"
+
   resources :events
   resources :members
   resources :business_accounts, except: :new
-  delete '/events/:id', to: 'events#destroy'
+  delete '/events/:id', to: "events#destroy"
   get '/members', to: 'members#index'
   post '/login', to: 'sessions#create'
   post '/signup', to: 'registration#create'
