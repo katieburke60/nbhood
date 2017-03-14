@@ -27,14 +27,20 @@ class MembersController < ApplicationController
     @member = Member.find_by(account_id: session[:account_id])
     if !@member
       @member = Member.new(member_params)
-      neighborhood = Neighborhood.find_by(id: params[:neighborhood].to_i)
+      neighborhood = Neighborhood.find_by(name: params[:neighborhood])
       @member.neighborhood = neighborhood
+      byebug
       @member.account_id = session[:account_id]
       if !@member.save
         render '/members/new'
+      else
+      redirect_to @member
       end
+    else
+      redirect_to @member
     end
-    redirect_to @member
+
+
   end
 
   def edit
