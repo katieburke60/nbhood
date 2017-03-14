@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  get '/events/categories/:category_id', to: 'events#category', as: 'category_show'
   resources :events
   resources :members
   resources :business_accounts, except: :new
