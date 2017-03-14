@@ -96,6 +96,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def followers
+    @businesses = current_member.businesses
+    @events = []
+    @businesses.each do |business|
+      business.events.each do |event|
+        @events << event if event.active
+      end
+    end
+  end
+
 
   private
 

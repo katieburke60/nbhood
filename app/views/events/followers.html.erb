@@ -1,0 +1,19 @@
+<h2><%= "Upcoming Events" %></h2>
+
+<% @events.each do |event| %>
+<label>Name:  </label> <%= event.name %><br />
+<label>Where: </label><%= event.location %><br />
+<label>When:  </label> <%= event.datetime %><br />
+<label>Deal:  </label><%= event.price_description %><br />
+<label>Categories:</label><% event.categories.each do |category|  %>
+<%= link_to category.name.capitalize, category_show_path(category) %><% end %><br />
+<%= link_to "More Details", event_path(event) %><br /><br />
+<% end %>
+
+
+<h4><%= "Businesses You Follow" %></h4>
+<% @businesses.each do |business| %>
+<label><%= business.name %></label>
+<%= link_to "More Details", business_path(business) %>
+<%= link_to "Unfollow", unfollow_path(business) %><br />
+<% end %>
