@@ -3,17 +3,19 @@
 <% end %>
 
 <%if @account%>
-  <% if @account.errors.any? %>
-  <div id='signup-errors'>
-    <%@account.errors.full_messages.each do |message| %>
-    <p><%= message %></p>
-    <% end %>
-    </div>
-    <% end %>
+<% if @account.errors.any? %>
+<div id='signup-errors'>
+  <%@account.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
   <% end %>
+</div>
+<% end %>
+<% end %>
 
-      <%= render 'layouts/signup' %>
-<div>
-  <%= "Or if you are a business, please sign in or log in at the business homepage" %>
-  <%= link_to "Business Page", new_business_account_path %>
+<%= render 'layouts/signup' %>
+<%= render 'layouts/bus_signup' %>
+<%= render 'layouts/login' %>
+<%= render 'layouts/bus_login' %>
+<div class="jumbotron">
+  <h1 class="display-3" style='text-align:center;'>Welcome!</h1>
 </div>

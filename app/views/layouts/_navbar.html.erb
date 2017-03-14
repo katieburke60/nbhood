@@ -25,7 +25,7 @@
             <li><% if current_member %>
               <a href="/members/<%= current_member.id%>">Profile</a></li>
               <% end %>
-              <li><a href="/followed">My Events</a></li>
+              <li><a href="/events/favorites">My Events</a></li>
               <li role="separator" class="divider"></li>
               <li>
                 <%= link_to "Logout", logout_path %>
@@ -42,7 +42,7 @@
                 <a href="/businesses/<%= current_business.id%>">Business Profile</a></li>
                 <% end %>
                 <li><a href="/events">My Business's Events</a></li>
-                <li><a href="#">My Followers</a></li>
+                <li><a href="/events/followers">My Followers</a></li>
                 <li role="separator" class="divider"></li>
                 <li>
                   <%= link_to "Logout", logout_path %>
@@ -53,8 +53,6 @@
             <% else %>
             <li><a href="#" data-toggle="modal" data-target=".bd-signup-modal-sm"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li><a href="#" data-toggle="modal" data-target=".bd-login-modal-sm"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <%= render 'layouts/login' %>
-
             <% end %>
           </ul>
         </div>
