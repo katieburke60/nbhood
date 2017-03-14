@@ -29,7 +29,6 @@ class MembersController < ApplicationController
       @member = Member.new(member_params)
       neighborhood = Neighborhood.find_by(name: params[:neighborhood])
       @member.neighborhood = neighborhood
-      byebug
       @member.account_id = session[:account_id]
       if !@member.save
         render '/members/new'
