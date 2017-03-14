@@ -3,13 +3,13 @@
 <% end %>
 
 <h4><%= @event.name %></h4>
-<label>What:  </label><%= @event.description %><br />
-<label>Where:  </label><%= @event.location %><br />
-<label>When:  </label><%= @event.datetime %><br />
-<label>Why:  </label><%= @event.price_description %><br />
-<label>Signed Up:  </label><%= @event.rsvps.count %><br />
-<label>Capacity:  </label><%= @event.capacity %><br />
-<label>Business:  </label><%= link_to @event.business.name.capitalize , business_path(@event.business) %><br />
+<label>What:  </label> <%= @event.description %><br />
+<label>Where:  </label> <%= @event.location %><br />
+<label>When:  </label> <%= @event.datetime %><br />
+<label>Why:  </label> <%= @event.price_description %><br />
+<label>Signed Up:  </label> <%= @event.rsvps.count %><br />
+<label>Capacity:  </label> <%= @event.capacity %><br />
+<label>Business:  </label> <%= link_to @event.business.name.capitalize , business_path(@event.business) %><br />
 <% if @rsvp %>
 <%= form_for @event, {url: cancel_rsvp_path(@event, @rsvp), :method => :delete} do |f| %><br />
 <%= f.submit "Cancel" %>
