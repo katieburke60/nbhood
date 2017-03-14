@@ -1,18 +1,18 @@
 <h1>MAKE A BUSINESS PROFILE</h1>
 <% if @business.errors.any? %>
 <div id='profile-errors'>
-<%@business.errors.full_messages.each do |message| %>
-    <p><%= message %></p>
+  <%@business.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
   <% end %>
-  </div>
-  <%end %>
+</div>
+<%end %>
 
 <%= form_for @business do |f| %>
 
 
-  <div><%= f.label :name %>:</div>
-  <div><%= f.text_field :name %></div>
-  <div><%= f.label :about %>:</div>
+<div><%= f.label :name %>:</div>
+<div><%= f.text_field :name %></div>
+<div><%= f.label :about %>:</div>
 <div><%= f.text_field :about %></div>
 <div><%= f.label :location %>:</div>
 <div><%= f.text_field :location %></div>
