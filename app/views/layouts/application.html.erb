@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>NeighborhoodProject</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>NeighborhoodProject</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all'  %>
+  <%= stylesheet_link_tag    'application', media: 'all'  %>
 
-    <%= javascript_include_tag 'application' %>
-  </head>
+  <%= javascript_include_tag 'application' %>
+</head>
 
-  <body>
+<body>
 
   <%= render 'layouts/navbar' %>
 
@@ -23,12 +23,12 @@
         <%= yield %>
       </div>
       <script type="text/javascript">
-    $(function () {
+      $(function () {
         $('#datetimepicker1').datetimepicker();
-    });
-</script>
+      });
+      </script>
     </div>
   </div>
 
-  </body>
+</body>
 </html>

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get '/events/categories/:category_id', to: 'events#category', as: 'category_show'
-  get '/events/followers', to: "events#followers", as: "followers"
+  get '/events/favorites', to: "events#followers", as: "followers"
 
   resources :events
   resources :members

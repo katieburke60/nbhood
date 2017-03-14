@@ -1,24 +1,24 @@
-<div class="modal fade bd-signup-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bd-bus-signup-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" style="text-align:center" id="exampleModalLabel">Sign Up</h3>
+        <h3 class="modal-title" style="text-align:center" id="exampleModalLabel">Business Sign Up</h3>
       </div>
       <div class="form-group">
         <div id='signup' style="text-align:center">
-          <%= form_tag signup_path do %>
+          <%= form_tag new_business_account_path do %>
           <div>Email: <%= text_field_tag :email, nil, {class: "form-control"} %></div>
           <div>  Password: <%= password_field_tag :password, nil, {class: "form-control"} %></div>
           <div>  Password Confirmation: <%= password_field_tag :password_confirmation, nil, {class: "form-control"} %></div>
           <br />
+          <%= token_tag %>
           <div><%= submit_tag "Submit", {class: "form-control"} %></div>
           <% end %>
-
         </div>
       </div>
       <div class="modal-footer">
         <span style="text-align: center">
-          <h4><a href='#' data-dismiss="modal"  data-toggle="modal" data-target=".bd-bus-signup-modal-sm">Sign Up as Business</a></h4>
+          <h4><a href='#' data-dismiss="modal"  data-toggle="modal" data-target=".bd-signup-modal-sm">Sign Up as Member</a></h4>
         </span>
       </div>
     </div>
