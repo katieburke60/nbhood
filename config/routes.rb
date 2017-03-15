@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#logout', as: 'logout'
 
   post '/business_login', to: 'business_sessions#create'
-  delete '/events/:event_id/rsvp/:id', to: 'events#destroy_rsvp', as: 'cancel_rsvp'
+  get '/events/:event_id/rsvp/:id', to: 'events#destroy_rsvp', as: 'cancel_rsvp'
   get '/businesses/signup', to: 'business_accounts#new', as: 'new_business_account'
   post 'businesses/signup', to: 'business_accounts#create'
   get '/business/:id/follow', to: 'followers#create', as: 'follow'
