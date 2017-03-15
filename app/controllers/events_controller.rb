@@ -54,7 +54,6 @@ class EventsController < ApplicationController
   end
 
   def show
-
     @event = Event.find_by(id: params[:id])
     if is_logged_in?
       @rsvp = Rsvp.find_by(event_id: @event.id, member_id: current_member.id)
