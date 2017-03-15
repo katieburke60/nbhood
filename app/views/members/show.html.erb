@@ -6,22 +6,19 @@
 </div>
 <% end %>
 
-
-
-
 <% if @member == current_member %>
 <h1> <%= "Welcome #{@member.name}. Your profile is below."%> </h1><br /><br />
   <%=link_to 'Edit Your Profile', edit_member_path(current_member)%>
 </div>
 
 <% else %>
-<h1> <%= "Welcome to #{@member.name}'s profile. "%> </h1>
+
+<h1> <%= "#{@member.name}"%> </h1>
 <% end %>
+<div class="random"></div>
 <div class='col-sm-3'>
   <div>
-
-    <p>Name: <%=@member.name.capitalize%></p>
-    <p>About: <%=@member.about%></p>
+    <p><%=@member.about%></p>
     <p>Gender: <%=@member.gender.capitalize if @member.gender%></p>
     <p>Age: <%=@member.age%></p>
     <p>Relationship Status: <%=@member.relationship_status.capitalize if @member.relationship_status%></p>

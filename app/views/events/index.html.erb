@@ -1,3 +1,5 @@
+<%= render 'layouts/events' %>
+
 <% flash[:alert] %>
 
 <div class='text-center'>
@@ -6,15 +8,14 @@
 </div>
 <div class='form-group text-center'>
   <%= form_tag events_path, method: :get do %>
-  <div><%= label_tag "Search by Name", "Search by Name"%></div>
-  <%= text_field_tag 'name', nil,  placeholder: "Enter Event Name..."  %>
+  <%= text_field_tag 'name', nil,  placeholder: "Event name"  %>
   <br />
-  <br />
-  <%= "and/or Filter by Category:" %>
+
   <br />
   <% Category.all.each do |category| %>
   <%= check_box_tag "categories[]", category.id  %>
   <%= label_tag category.name %>
+  &nbsp
   <% end %>
   <br />
   <div class='col-sm-5'>
