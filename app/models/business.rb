@@ -4,6 +4,8 @@ class Business < ApplicationRecord
   has_many :members, through: :members_follow_businesses
   belongs_to :business_account
   belongs_to :neighborhood
+  has_many :ratings, through: :events
+
 
 
 end

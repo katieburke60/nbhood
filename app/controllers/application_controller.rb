@@ -22,4 +22,15 @@ class ApplicationController < ActionController::Base
        !!session[:business_account_id]
      end
 
+     def prompt_rating
+       current_member.ratings.each do |rating|
+         if !rating.complete
+           active_rating = rating
+         end
+       end
+       if active_rating
+         redirect_to rating_path(current_member, active_rating)
+       end
+     end
+
 end
