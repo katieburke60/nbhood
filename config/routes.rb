@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   resources :events
   resources :members
   resources :business_accounts, except: :new
-  post '/ratings/:id', to: 'ratings#create', as: 'create_rating'
-  get '/members/:member_id/ratings/:id', to: 'ratings#new', as: 'new_rating'
 
   delete '/events/:id', to: "events#destroy"
   get '/members', to: 'members#index'
