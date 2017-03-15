@@ -50,15 +50,15 @@
 
       business_acounts = BusinessAccount.create([
         {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'}
+        {email: 'emailB@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailC@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailD@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailE@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailF@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailG@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailH@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailI@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailJ@sample.com', password: 'password', password_confirmation: 'password'}
         ])
 
 
@@ -175,7 +175,7 @@
               gb.neighborhood_id = Neighborhood.all[6].id
               hb.neighborhood_id = Neighborhood.all[0].id
               ib.neighborhood_id = Neighborhood.all[1].id
-              jb.neighborhood_id = Neighborhood.all[2].id
+              jb.neighborhood_id = Neighborhood.all[].id
 
               ab.save
               bb.save
