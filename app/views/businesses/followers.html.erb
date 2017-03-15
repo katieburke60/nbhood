@@ -1,6 +1,11 @@
+<style>
+  body {background-color: #9AB800}
+</style>
+<% if @followers %>
 <h2><%= "These are your followers!" %></h2>
-
-
+<%else%>
+<h3>You don't have any followers yet.</h3>
+<%end%>
 <% if @followers %>
 <table class="table">
   <thead>
