@@ -18,7 +18,7 @@
   <% Category.all.each do |category| %>
   <%= check_box_tag "categories[]", category.id  %>
   <%= label_tag category.name %>
-  &nbsp
+  &nbsp;
   <% end %>
   <br />
   <div class='col-sm-5'>
@@ -29,30 +29,6 @@
   </div>
 </div>
 
-  <div><h4><%= label_tag "Filter By Category", "Filter By Category"%></h4></div>
-  <div class="form-check form-check-inline">
-    <% Category.all.each do |category| %>
-
-
-    <label class="form-check-label">
-      &nbsp;&nbsp;<%= check_box_tag "categories[]", category.id, @cat_restore.include?(category.id), class: "form-check-input" %><%= category.name.capitalize %>
-    </label>
-
-    <% end %>
-  </div>
-    <br />
-    <br />
-    <div><%= label_tag "Search by Name", "Or Search by Name"%></div>
-    <%= text_field_tag 'name', @name,  placeholder: "Enter Event Name..."  %>
-    <br />
-    <div class='col-sm-5'>
-    </div>
-    <div class='col-sm-2'>
-      <br />
-      <%= submit_tag "Search", name: nil, class: "form-control"%>
-      <% end %>
-    </div>
-  </div>
 <div>
   <table class="table">
     <% if Event.all.count > @events.count && !@events.empty?  %>
