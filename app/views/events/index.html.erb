@@ -13,8 +13,8 @@
   <%= "and/or Filter by Category:" %>
   <br />
   <% Category.all.each do |category| %>
-  <%= label_tag category.name %>
   <%= check_box_tag "categories[]", category.id  %>
+  <%= label_tag category.name %>
   <% end %>
   <br />
   <div class='col-sm-5'>
