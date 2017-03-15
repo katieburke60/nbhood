@@ -34,15 +34,15 @@
 <% else %>
 <h4><%= "All Events:" %></h4>
 <% end %>
-
 <% @events.each do |event| %>
 <% event.check_end_date %>
 <% event.check_capacity %>
-<label>Name:  </label> <%= event.name %><br />
-<label>Where: </label><%= event.location %><br />
-<label>When:  </label> <%= event.datetime %><br />
-<label>Deal:  </label><%= event.price_description %><br />
-<label>Categories:</label><% event.categories.each do |category|  %>
+<label>Name:</label>    <%= event.name %><br />
+<label>Where:</label>    <%= event.location %><br />
+<label>When:</label>    <%= event.datetime %><br />
+<label>Deal:</label>    <%= event.price_description %><br />
+<label>Categories:</label>    <% event.categories.each do |category|  %>
 <%= link_to category.name.capitalize, category_show_path(category) %><% end %><br />
 <%= link_to "More Details", event_path(event) %><br /><br />
-<% end %><br />
+<% end %>
+<br />
