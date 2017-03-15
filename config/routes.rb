@@ -3,11 +3,9 @@ Rails.application.routes.draw do
   get '/events/categories/:category_id', to: 'events#category', as: 'category_show'
   get '/events/favorites', to: "events#followers", as: "followers"
   post '/ratings/:id', to: 'ratings#create', as: 'create_rating'
-  get '/members/:member_id/ratings/:id', to: 'ratings#new', as: 'new_rating'
   resources :events
   resources :members
   resources :business_accounts, except: :new
-  post '/ratings/:id', to: 'ratings#create', as: 'create_rating'
   get '/members/:member_id/ratings/:id', to: 'ratings#new', as: 'new_rating'
 
   delete '/events/:id', to: "events#destroy"
