@@ -9,6 +9,10 @@ class Member < ApplicationRecord
 
   belongs_to :account
   belongs_to :neighborhood
+  
+  validates :name, presence: true, length: { maximum: 40 }
+  validates :about, presence: true, length: { maximum: 255 }
+
 
 
 

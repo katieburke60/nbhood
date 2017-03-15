@@ -7,6 +7,13 @@ class Event < ApplicationRecord
   delegate :neighborhood, to: :business
   has_many :ratings, through: :rsvps
 
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :datetime, presence: true
+  validates :price, numericality: true, length: { maximum: 4 }
+  validates :price_description, presence: true, length: { maximum: 255 }
+  validates :capacity, presence: true, numericality: true, length: { maximum: 1000 }
+
+
   def check_capacity
     if rsvps.count >= capacity
       self.active = false

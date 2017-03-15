@@ -6,6 +6,11 @@ class Business < ApplicationRecord
   belongs_to :neighborhood
   has_many :ratings, through: :events
 
+  validates :name, presence: true
+  validates :about, presence: true, length: {maximum: 255}
+  validates :name, presence: true
+  validates :phone, numericality: true, length:{ is: 10 }
+  validates :location, presence: true
 
 
 end

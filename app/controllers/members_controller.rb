@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  skip_before_action :redirect_to_create_profile, only: [:new, :create]
 
   def index
       @search = params[:search]
@@ -60,7 +61,7 @@ class MembersController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:name, :about, :age, :hometown, :gender, :relationship_status, :phone)
+    params.require(:member).permit(:name, :about, :age, :hometown_state, :gender, :relationship_status, :phone)
   end
 
 end
