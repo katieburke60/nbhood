@@ -11,7 +11,7 @@
 
 <% if @member == current_member %>
 <h1> <%= "Welcome #{@member.name}. Your profile is below."%> </h1><br /><br />
-  <%=link_to 'Edit Your Profile', edit_member_path(current_member)%>
+<%=link_to 'Edit Your Profile', edit_member_path(current_member)%>
 </div>
 
 <% else %>
@@ -28,14 +28,17 @@
     <p>Hometown State: <%=@member.hometown_state%></p>
     <p>Phone Number: <%=@member.phone%></p>
     <p>Neighborhood: <%=@member.neighborhood.name%></p>
+
     <p>Follows: <%if @member.businesses.count > 0 %>
       <% @member.businesses.each do |business| %></p>
-      <%= link_to business.name.capitalize, business_path(business)  %><br />
-      <% if @member == current_member || business.members.include?(current_member) %>
-      <%= link_to "Unfollow #{business.name.titleize}", unfollow_path(business) %>
-      <% elsif !business.members.include?(current_member) %>
-      <%= link_to "Follow #{business.name.titleize}", follow_path(business) %>
-      <% end %>
+      <div style='margin-top: 5px; margin-bottom: 5px;'>
+        <%= link_to business.name.capitalize, business_path(business)  %> -
+        <% if @member == current_member || business.members.include?(current_member) %>
+        <%= link_to "Unfollow?", unfollow_path(business), class: "btn-sm btn-primary" %>
+        <% elsif !business.members.include?(current_member) %>
+        <%= link_to "Follow #{business.name.titleize}", follow_path(business) %>
+        <% end %>
+      </div>
       <% end %>
       <% else %>
       <%= "#{@member.name} does not follow any businesses yet" %>
@@ -44,42 +47,43 @@
 
 
     </div>
-    <b><%= "Events:" %></b>
-    <% @member.rsvps.each do |rsvp|%><br />
-    <b><%= rsvp.event.name %></b>
-    <%= rsvp.event.description %><br />
-    <%= rsvp.event.datetime %><br />
-    <%= rsvp.event.price_description %><br />
-    <label>Current Status:</label>
-    <% if rsvp.committed %>
-    <%= "RSVP'ed" %>
-    <% else %>
-    <%= "Interested" %>
-    <% end %><br />
-    <%= link_to "More Details", event_path(rsvp.event) %><br />
-    <% if @member != current_member && !rsvp.event.members.include?(current_member) %>
+    <h3><%= "Events:" %></h3>
+    <% @member.rsvps.each do |rsvp|%>
+    <div style='margin-top: 5px; margin-bottom: 5px;'>
+      <div><b><%= rsvp.event.name.titleize %></b></div>
+      <div><%= rsvp.event.description %></div>
+      <div><%= rsvp.event.datetime.strftime("%D %l:%M %p") %></div>
+      <div><%= rsvp.event.price_description %></div>
+      <label>Current Status:</label>
+      <% if rsvp.committed %>
+      <%= "RSVP'ed" %>
+      <% else %>
+      <%= "Interested" %>
+      <% end %><br />
+      <%= link_to "More Details", event_path(rsvp.event) %><br />
+      <% if @member != current_member && !rsvp.event.members.include?(current_member) %>
       <%= link_to "RSVP", rsvp_path(rsvp.event), class: "btn btn-success" %> <%= "or" %>
       <%= link_to "Express Interest", interest_path(rsvp.event), class: "btn btn-primary" %>
 
-    <% elsif @member != current_member && current_member.commits.include?(rsvp.event)%>
+      <% elsif @member != current_member && current_member.commits.include?(rsvp.event)%>
       <div><strong><%= "You are currently RSVP'ed" %></strong></div>
-    <% elsif @member != current_member && current_member.interests.include?(rsvp.event) %>
+      <% elsif @member != current_member && current_member.interests.include?(rsvp.event) %>
       <div><%= "You are currently interested. RSVP!" %></div>
       <div><%= link_to "RSVP", rsvp_path(rsvp.event), class: "btn btn-success" %></div>
-    <% elsif @member == current_member && rsvp.committed %>
+      <% elsif @member == current_member && rsvp.committed %>
       <div><%= link_to "Cancel", cancel_rsvp_path(rsvp.event, rsvp), class: "btn btn-danger" %></div>
-    <% else %>
-      <div><%= "You are currently interested. RSVP!" %></div>
+      <% else %>
       <div><%= link_to "RSVP", rsvp_path(rsvp.event), class: "btn btn-success" %></div>
-    <%end%>
+      <%end%>
+    </div>
     <% end %>
     <br /><br />
 
   </div>
   <div class='col-sm-9'>
     <%= member_rsvps_heading %>
-
-    <%= month_calendar events: @member.rsvps do |date, rsvps| %>
+    <% @rsvps = @member.rsvps.where(committed: true) %>
+    <%= month_calendar events: @rsvps do |date, rsvps| %>
     <small><%= date.strftime("%m/%d") %></small>
 
     <% rsvps.each do |rsvp| %>
