@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
      end
 
      def prompt_rating
+       active_rating = nil
        current_member.ratings.each do |rating|
          if !rating.complete
            active_rating = rating
@@ -32,7 +33,7 @@ class ApplicationController < ActionController::Base
        end
        if active_rating
          redirect_to rating_path(current_member, active_rating)
-       end 
+       end
      end
      def redirect_if_not_logged_in
        if !business_logged_in? && !is_logged_in?
