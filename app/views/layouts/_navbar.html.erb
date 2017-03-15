@@ -39,15 +39,13 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=BusinessAccount.find_by(id: session[:business_account_id]).email%><span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><% if current_business %>
-                <a href="/businesses/<%= current_business.id%>">Business Profile</a></li>
+                <a href="/businesses/<%= current_business.id%>">Business Events</a></li>
                 <% end %>
-                <li><a href="/events">My Business's Events</a></li>
                 <li><a href="/events/followers">My Followers</a></li>
                 <li role="separator" class="divider"></li>
                 <li>
                   <%= link_to "Logout", logout_path %>
                 </li>
-                <!-- <li></li> -->
               </ul>
             </li>
             <% else %>
