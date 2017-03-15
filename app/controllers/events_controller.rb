@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  skip_before_action :redirect_to_create_profile, only: [:index]
+
 
   def index
     # @category_ids = params[:categories]
@@ -31,11 +33,14 @@ class EventsController < ApplicationController
   end
 
   def new
+
     @event = Event.new
     @business = current_business
+
   end
 
   def create
+
     @event = Event.new(event_params)
     time = params.require(:event).permit(:datetime)
     @event.datetime = format_datetime(time[:datetime])
@@ -50,7 +55,7 @@ class EventsController < ApplicationController
       render 'events/new'
     else
       redirect_to events_path
-    end
+    end    
   end
 
   def show
@@ -123,6 +128,12 @@ class EventsController < ApplicationController
 
   def category_params
     params.require(:categories)
+  end
+
+  def redirect_if_not_business
+    unless business_logged_in?
+      redirect_to events_path
+    end
   end
 
 
