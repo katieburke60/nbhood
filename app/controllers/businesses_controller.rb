@@ -1,4 +1,5 @@
 class BusinessesController < ApplicationController
+  skip_before_action :redirect_to_create_profile, only: [:new, :create]
   def index
     @search = params[:search]
     if @search

@@ -8,19 +8,23 @@
   <%= form_tag events_path, method: :get do %>
   <%= "Filter by Category:" %>
   <br />
+  <div class="form-check form-check-inline">
   <% Category.all.each do |category| %>
-  <%= check_box_tag "categories[]", category.id  %>
-  <%= label_tag category.name %>
+
+    <label class="form-check-label">
+      &nbsp;&nbsp;<%= check_box_tag "categories[]", category.id, false, class: "form-check-input" %><%= category.name.capitalize %>
+    </label>
+
   <% end %>
   <br />
-<br />
+  <br />
   <div><%= label_tag "Search by Name", "Or Search by Name"%></div>
   <%= text_field_tag 'name', nil,  placeholder: "Enter Event Name..."  %>
   <br />
   <div class='col-sm-5'>
   </div>
   <div class='col-sm-2'>
-  <br />
+    <br />
     <%= submit_tag "Search", name: nil, class: "form-control"%>
     <% end %>
   </div>
