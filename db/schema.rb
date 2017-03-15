@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315135010) do
+ActiveRecord::Schema.define(version: 20170315174818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,18 @@ ActiveRecord::Schema.define(version: 20170315135010) do
 
   create_table "neighborhoods", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "member_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rsvp_id"
+    t.integer "rating"
+    t.string  "comment"
+    t.boolean "complete"
+    t.integer "notification_id"
   end
 
   create_table "rsvps", force: :cascade do |t|

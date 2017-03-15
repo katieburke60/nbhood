@@ -1,70 +1,71 @@
 <% flash[:alert] %>
 
 <div class='text-center'>
-  <h4>Search for an event or browse among the list below</h4>
+  <h1>Find An Event</h1>
   <br />
 </div>
 <div class='form-group text-center'>
   <%= form_tag events_path, method: :get do %>
-  <%= "Filter by Category:" %>
-  <br />
+  <div><h4><%= label_tag "Filter By Category", "Filter By Category"%></h4></div>
   <div class="form-check form-check-inline">
-  <% Category.all.each do |category| %>
+    <% Category.all.each do |category| %>
 
     <label class="form-check-label">
-      &nbsp;&nbsp;<%= check_box_tag "categories[]", category.id, false, class: "form-check-input" %><%= category.name.capitalize %>
+      &nbsp;&nbsp;<%= check_box_tag "categories[]", category.id, @cat_restore.include?(category.id), class: "form-check-input" %><%= category.name.capitalize %>
     </label>
 
-  <% end %>
-  <br />
-  <br />
-  <div><%= label_tag "Search by Name", "Or Search by Name"%></div>
-  <%= text_field_tag 'name', nil,  placeholder: "Enter Event Name..."  %>
-  <br />
-  <div class='col-sm-5'>
-  </div>
-  <div class='col-sm-2'>
-    <br />
-    <%= submit_tag "Search", name: nil, class: "form-control"%>
     <% end %>
   </div>
-</div>
-
-
-<br /><br />
-<% if Event.all.count > @events.count && !@events.empty?  %>
-<h4><%= "Results Below:" %></h4>
-<% elsif @events.empty? %>
-<h4><%= "No Events Match Your Search" %></h4>
-<% else %>
-<h4><%= "All Events:" %></h4>
-<% end %>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Event Name</th>
-      <th>Where</th>
-      <th>Date</th>
-      <th>Time</th>
-      <th>Deal</th>
-      <th>Categories</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @events.each do |event| %>
-    <% event.check_end_date %>
-    <% event.check_capacity %>
-
-    <tr>
-      <td><%= link_to event.name.capitalize, event_path(event)%></td>
-      <td><%= event.location %></td>
-      <td><%= event.datetime.strftime("%D") %></td>
-      <td><%= event.datetime.strftime("%l:%M %p") %></td>
-      <td><%= event.price_description %></td>
-      <td><% event.categories.each do |category|  %>
-        <%= link_to category.name.capitalize, category_show_path(category) %><br />
-        <% end %>
-      </tr>
+    <br />
+    <br />
+    <div><%= label_tag "Search by Name", "Or Search by Name"%></div>
+    <%= text_field_tag 'name', @name,  placeholder: "Enter Event Name..."  %>
+    <br />
+    <div class='col-sm-5'>
+    </div>
+    <div class='col-sm-2'>
+      <br />
+      <%= submit_tag "Search", name: nil, class: "form-control"%>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+  </div>
+<div>
+  <table class="table">
+    <% if Event.all.count > @events.count && !@events.empty?  %>
+  <% caption = "Results Below:" %>
+    <% elsif @events.empty? %>
+  <% caption = "No Events Match Your Search" %>
+    <% else %>
+  <% caption = "All Events:" %>
+    <% end %>
+    <caption><%= caption %></caption>
+    <thead>
+
+      <tr>
+        <th>Event Name</th>
+        <th>Where</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Deal</th>
+        <th>Categories</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+      <% event.check_end_date %>
+      <% event.check_capacity %>
+
+      <tr>
+        <td><%= link_to event.name.capitalize, event_path(event)%></td>
+        <td><%= event.location %></td>
+        <td><%= event.datetime.strftime("%D") %></td>
+        <td><%= event.datetime.strftime("%l:%M %p") %></td>
+        <td><%= event.price_description %></td>
+        <td><% event.categories.each do |category|  %>
+          <%= link_to category.name.capitalize, category_show_path(category) %><br />
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

@@ -1,6 +1,9 @@
 class Rating < ApplicationRecord
   belongs_to :rsvp
   belongs_to :notification
+  validates :rating, presence: true, numericality: true
+
+
 
   def create_rating(rsvp)
     if Time.now - (12 * 60 * 60) > rsvp.event.datetime && rsvp.committed

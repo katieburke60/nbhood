@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_member, :is_logged_in?, :current_business, :business_logged_in?
+  helper_method :current_member, :is_logged_in?, :current_business, :business_logged_in?, :prompt_rating
   before_action :redirect_if_not_logged_in
   before_action :redirect_to_create_profile
+  before_action :prompt_rating
+
 
     def current_member
       if is_logged_in?
@@ -32,7 +34,7 @@ class ApplicationController < ActionController::Base
          end
        end
        if active_rating
-         redirect_to rating_path(current_member, active_rating)
+         redirect_to new_rating_path(current_member, active_rating)
        end
      end
      def redirect_if_not_logged_in
