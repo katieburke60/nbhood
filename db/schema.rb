@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170315135010) do
   create_table "rsvps", force: :cascade do |t|
     t.integer "member_id"
     t.integer "event_id"
+    t.boolean "committed"
     t.index ["event_id"], name: "index_rsvps_on_event_id", using: :btree
     t.index ["member_id"], name: "index_rsvps_on_member_id", using: :btree
   end

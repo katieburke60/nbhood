@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   root 'root#index'
   get '/about', to: 'static#index'
   get '/account', to: 'accounts#show'
-  post '/events/:id/rsvp', to: 'events#rsvp', as: 'rsvp'
+  get '/events/:id/rsvp', to: 'events#rsvp', as: 'rsvp'
+  get '/events/:id/interest', to: 'events#interest', as: 'interest'
+  get '/events/:event_id/interest/:id', to: 'events#destroy_interest', as: 'cancel_interest'
   get '/logout', to: 'sessions#logout', as: 'logout'
 
   post '/business_login', to: 'business_sessions#create'
