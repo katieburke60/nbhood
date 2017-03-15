@@ -1,16 +1,16 @@
 <div class='form-group text-center'>
   <h1>Find Your Neighbors</h1>
-    <%= form_tag('members', :method => 'get', :id => 'search form') do %>
-    Search
-    <br /> <%= text_field_tag :search, nil, style:"margin-top:5px; margin-bottom: 5px;"%>
-    <br />
-    <div class='col-sm-5'>
-    </div>
-    <div class='col-sm-2'>
-      <%= submit_tag "Search", name: nil, class: "form-control"%>
-      <% end %>
-    </div>
+  <%= form_tag('members', :method => 'get', :id => 'search form') do %>
+  Search
+  <br /> <%= text_field_tag :search, nil, style:"margin-top:5px; margin-bottom: 5px;"%>
+  <br />
+  <div class='col-sm-5'>
   </div>
+  <div class='col-sm-2'>
+    <%= submit_tag "Search", name: nil, class: "form-control"%>
+    <% end %>
+  </div>
+</div>
 <br /><br />
 
 <% if Member.all.count > @members.count %>
@@ -33,19 +33,23 @@
       <% @members.each do |member| %>
       <tr>
         <td><%= link_to member.name, member_path(member) %></td>
-        <td><%= member.relationship_status.capitalize %></td>
-        <!-- other attributes -->
-      </tr>
+        <td><% if member.relationship_status %>
+          <%= member.relationship_status.capitalize %>
+          <% else %>
+          N/A
+          <% end %></td>
+          <!-- other attributes -->
+        </tr>
 
-      <% end %>
-    </tbody>
-  </table>
-  <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
 
-  <% if @members.blank? %>
-  <h4>There are no members containing the term <%= @search %></h4>
-  <% end %>
+    <% if @members.blank? %>
+    <h4>There are no members containing the term <%= @search %></h4>
+    <% end %>
 
-</div>
+  </div>
 
-<br>
+  <br>
