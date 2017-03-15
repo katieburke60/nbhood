@@ -4,11 +4,14 @@ class EventsController < ApplicationController
 
   def index
     # @category_ids = params[:categories]
+    @cat_restore = []
     if !params[:name].blank?
+      @name = params[:name]
       @events = Event.where("name like ?", "%#{params[:name]}%").where(active: true)
     end
     if params[:categories]
-      params[:categories].map do |category_id|
+
+      @cat_restore = params[:categories].map do |category_id|
         category_id.to_i
       end
       @events_cat = Event.joins(:event_categories).where("category_id = ?", params[:categories][0]).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][1])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][2])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][3])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][4])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][5]))
@@ -33,10 +36,8 @@ class EventsController < ApplicationController
   end
 
   def new
-
     @event = Event.new
     @business = current_business
-
   end
 
   def create
@@ -55,7 +56,7 @@ class EventsController < ApplicationController
       render 'events/new'
     else
       redirect_to events_path
-    end    
+    end
   end
 
   def show

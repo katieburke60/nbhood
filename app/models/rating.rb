@@ -1,6 +1,7 @@
 class Rating < ApplicationRecord
   belongs_to :rsvp
   belongs_to :notification
+  validates :rating, presence: true, numericality: true
 
 
 
