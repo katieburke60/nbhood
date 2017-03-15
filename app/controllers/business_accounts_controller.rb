@@ -18,7 +18,7 @@ class BusinessAccountsController < ApplicationController
   private
 
   def registration_params
-    params.require(:business_account).permit(:email, :password, :password_confirmation)
+    params.permit(:email, :password, :password_confirmation)
   end
 
 end

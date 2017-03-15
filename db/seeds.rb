@@ -50,15 +50,15 @@
 
       business_acounts = BusinessAccount.create([
         {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
-        {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'}
+        {email: 'emailB@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailC@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailD@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailE@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailF@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailG@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailH@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailI@sample.com', password: 'password', password_confirmation: 'password'},
+        {email: 'emailJ@sample.com', password: 'password', password_confirmation: 'password'}
         ])
 
 
@@ -116,16 +116,16 @@
           # i = {datetime: Time.now, name: "spoken word", description: "Shh, I'm talking now", location: "Tribeca alley", price: 90, price_description: "Show lasts 12 hours", capacity: 20, active: true, business_id: 9 },
           # j = {datetime: Time.now, name: "discussion group", description: "Talk about it", location: "West Village penthouse", price: 0, price_description: "It's free!", capacity: 10, active: true, business_id: 10 }
           # ])
-          a.categories << q
-          b.categories << r
-          c.categories << s
-          d.categories << t
-          e.categories << u
+          a.categories << z << v
+          b.categories << q
+          c.categories << z
+          d.categories << y
+          e.categories << w << t
           f.categories << v
-          g.categories << w
-          h.categories << x
-          i.categories << y
-          j.categories << z
+          g.categories << w << u
+          h.categories << x << s
+          i.categories << r << q
+          j.categories << x
 
           a.save
           b.save
