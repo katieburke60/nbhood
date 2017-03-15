@@ -1,10 +1,24 @@
+<%= render 'layouts/members'%>
+
 <div class='form-group text-center'>
+
+    <%= form_tag('members', :method => 'get', :id => 'search form') do %>
+    Search
+    <br /> <%= text_field_tag :search, nil, style:"margin-top:5px; margin-bottom: 5px;"%>
+    <br />
+    <div class='col-sm-5'>
+    </div>
+    <div class='col-sm-2'>
+      <%= submit_tag "Search", name: nil, class: "form-control"%>
+      <% end %>
+
   <h1>Find Your Neighbors</h1>
   <%= form_tag('members', :method => 'get', :id => 'search form') do %>
   Search
   <br /> <%= text_field_tag :search, nil, style:"margin-top:5px; margin-bottom: 5px;"%>
   <br />
   <div class='col-sm-5'>
+
   </div>
   <div class='col-sm-2'>
     <%= submit_tag "Search", name: nil, class: "form-control"%>

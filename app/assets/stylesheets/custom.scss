@@ -1,10 +1,32 @@
-#signup {
+ #signup {
   padding: 30px
 }
 #login {
   padding: 30px
 }
 
+
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.navbar-brand {
+    float: left;
+    padding: 15px 15px;
+    margin-left: 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 50px;
+
 body {
   font-family: 'Libre Franklin', sans-serif;
+
 }
