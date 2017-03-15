@@ -1,21 +1,29 @@
 <% flash[:alert] %>
 
-
-<h4>Search for an event or browse among the list below</h4>
-<br />
-
-<%= form_tag events_path, method: :get do %>
-<%= label_tag "Search by Name" %>
-<%= text_field_tag 'name' %>
-<br />
-<%= "and / or Filter by Category:" %><br />
-<% Category.all.each do |category| %>
-<%= label_tag category.name %>
-<%= check_box_tag "categories[]", category.id  %>
-<% end %>
-<br />
-<%= submit_tag "Search", name: nil %>
-<% end %>
+<div class='text-center'>
+  <h4>Search for an event or browse among the list below</h4>
+  <br />
+</div>
+<div class='form-group text-center'>
+  <%= form_tag events_path, method: :get do %>
+  <div><%= label_tag "Search by Name", "Search by Name"%></div>
+  <%= text_field_tag 'name', nil,  placeholder: "Enter Event Name..."  %>
+  <br />
+  <br />
+  <%= "and/or Filter by Category:" %>
+  <br />
+  <% Category.all.each do |category| %>
+  <%= label_tag category.name %>
+  <%= check_box_tag "categories[]", category.id  %>
+  <% end %>
+  <br />
+  <div class='col-sm-5'>
+  </div>
+  <div class='col-sm-2'>
+    <%= submit_tag "Search", name: nil, class: "form-control"%>
+    <% end %>
+  </div>
+</div>
 
 
 <br /><br />
