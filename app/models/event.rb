@@ -5,6 +5,8 @@ class Event < ApplicationRecord
   has_many :rsvps, dependent: :destroy
   has_many :members, through: :rsvps
   delegate :neighborhood, to: :business
+  has_many :ratings, through: :rsvps
+
   validates :name, presence: true, length: { maximum: 50 }
   validates :datetime, presence: true
   validates :price, numericality: true, length: { maximum: 4 }
@@ -28,6 +30,15 @@ class Event < ApplicationRecord
       self.save
     end
   end
+
+  def prompt_ratings
+    if self.datetime < Time.now - 12*60*60 && self.ratings.empty?
+      self.rsvps.each do |rsvp|
+        create_rating(rsvp)
+      end
+    end
+  end
+
 
   def start_time
     self.datetime ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship

@@ -24,6 +24,16 @@ class ApplicationController < ActionController::Base
        !!session[:business_account_id]
      end
 
+     def prompt_rating
+       current_member.ratings.each do |rating|
+         if !rating.complete
+           active_rating = rating
+         end
+       end
+       if active_rating
+         redirect_to rating_path(current_member, active_rating)
+       end 
+     end
      def redirect_if_not_logged_in
        if !business_logged_in? && !is_logged_in?
          redirect_to root
