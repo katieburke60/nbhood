@@ -11,7 +11,7 @@
 <label>Capacity:  </label> <%= @event.capacity %><br />
 <label>Business:  </label> <%= link_to @event.business.name.capitalize , business_path(@event.business) %><br />
 <% if @rsvp %>
-  <% if @rsvp.committed %>
+  <% if @rsvp.committed  %>
     <%= "You are currently RSVP'ed for this event" %><br />
     <%= link_to "Cancel", cancel_rsvp_path(@event, @rsvp), class: "btn btn-danger" %>
   <% elsif @event.active %>
