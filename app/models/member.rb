@@ -9,7 +9,7 @@ class Member < ApplicationRecord
 
   belongs_to :account
   belongs_to :neighborhood
-  
+
   validates :name, presence: true, length: { maximum: 40 }
   validates :about, presence: true, length: { maximum: 255 }
 
@@ -20,9 +20,6 @@ class Member < ApplicationRecord
     where("name LIKE ?", "%#{search}%")
   end
 
-  def self.pending_ratings
-    self.notifications.each do |notification|
-  end
 
   def interests
     rsvps = []
