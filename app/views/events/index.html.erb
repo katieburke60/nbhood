@@ -6,20 +6,21 @@
 </div>
 <div class='form-group text-center'>
   <%= form_tag events_path, method: :get do %>
-  <div><%= label_tag "Search by Name", "Search by Name"%></div>
-  <%= text_field_tag 'name', nil,  placeholder: "Enter Event Name..."  %>
-  <br />
-  <br />
-  <%= "and/or Filter by Category:" %>
+  <%= "Filter by Category:" %>
   <br />
   <% Category.all.each do |category| %>
   <%= check_box_tag "categories[]", category.id  %>
   <%= label_tag category.name %>
   <% end %>
   <br />
+<br />
+  <div><%= label_tag "Search by Name", "Or Search by Name"%></div>
+  <%= text_field_tag 'name', nil,  placeholder: "Enter Event Name..."  %>
+  <br />
   <div class='col-sm-5'>
   </div>
   <div class='col-sm-2'>
+  <br />
     <%= submit_tag "Search", name: nil, class: "form-control"%>
     <% end %>
   </div>
@@ -57,7 +58,8 @@
       <td><%= event.datetime.strftime("%l:%M %p") %></td>
       <td><%= event.price_description %></td>
       <td><% event.categories.each do |category|  %>
-        <%= link_to category.name.capitalize, category_show_path(category) %><% end %>
+        <%= link_to category.name.capitalize, category_show_path(category) %><br />
+        <% end %>
       </tr>
       <% end %>
     </tbody>

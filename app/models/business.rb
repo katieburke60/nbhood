@@ -4,6 +4,11 @@ class Business < ApplicationRecord
   has_many :members, through: :members_follow_businesses
   belongs_to :business_account
   belongs_to :neighborhood
+  validates :name, presence: true
+  validates :about, presence: true, length: {maximum: 255}
+  validates :name, presence: true
+  validates :phone, numericality: true, length:{ is: 10 }
+  validates :location, presence: true
 
 
 end
