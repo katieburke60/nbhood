@@ -175,7 +175,7 @@
               gb.neighborhood_id = Neighborhood.all[6].id
               hb.neighborhood_id = Neighborhood.all[0].id
               ib.neighborhood_id = Neighborhood.all[1].id
-              jb.neighborhood_id = Neighborhood.all[].id
+              jb.neighborhood_id = Neighborhood.all[2].id
 
               ab.save
               bb.save
