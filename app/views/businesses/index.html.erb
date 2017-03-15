@@ -1,24 +1,29 @@
-<h1>Find A Business</h1>
+<div>
+  <div class='form-group text-center'>
+    <h1>Find A Business</h1>
 
-<%= form_tag('businesses', :method => 'get', :id => 'search form') do %>
-  Search: <%= text_field_tag :search%>
-  <%= submit_tag "Search", :name => nil %>
-  <% end %>
+    <%= form_tag('businesses', :method => 'get', :id => 'search form') do %>
+    Search: <%= text_field_tag :search%>
+    <%= submit_tag "Search", :name => nil %>
+    <% end %>
+  </div>
 
   <% if !@businesses.blank? %>
+  <table class="table">
+  <tbody>
     <% @businesses.each do |business| %>
-    <div>
-      <li>
-        <%= link_to business.name, business_path(business) %></div><br />
-        <label><%= "Follow?" %>    </label><%= link_to " Follow #{business.name.capitalize}", follow_path(business) %><br /><br />
-
-      </li>
-    <!-- other attributes -->
+    <tr>
+      <td><%= link_to business.name, business_path(business) %></td>
+      <td><%= pluralize(business.events.count, 'event') %></td>
+    </tr>
     <% end %>
-  <% end %>
+  </tbody>
+</table>
+<% end %>
 
 <% if @businesses.blank? %>
-  <h4>There are no businesses containing the term <%= @search %></h4>
+<h4>There are no businesses containing the term <%= @search %></h4>
 <% end %>
 
 <br>
+</div>
