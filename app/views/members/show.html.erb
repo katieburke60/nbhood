@@ -44,19 +44,33 @@
 
 
     </div>
+    <b><%= "Events:" %></b>
     <% @member.rsvps.each do |rsvp|%><br />
     <b><%= rsvp.event.name %></b>
     <%= rsvp.event.description %><br />
     <%= rsvp.event.datetime %><br />
     <%= rsvp.event.price_description %><br />
+    <label>Current Status:</label>
+    <% if rsvp.committed %>
+    <%= "RSVP'ed" %>
+    <% else %>
+    <%= "Interested" %>
+    <% end %><br />
     <%= link_to "More Details", event_path(rsvp.event) %><br />
-    <% if @member != current_member && rsvp.event.members.include?(@member) %>
-    <%= link_to "Cancel", cancel_rsvp_path(rsvp.event, rsvp) %>
-    <% elsif @member != current_member %>
-    <%= "Or to RSVP: " %>
-    <%= link_to "RSVP", rsvp_path(rsvp.event) %>
-    <% elsif @member == current_member %>
-    <%= link_to "Cancel", cancel_rsvp_path(rsvp.event, rsvp) %>
+    <% if @member != current_member && !rsvp.event.members.include?(current_member) %>
+      <%= link_to "RSVP", rsvp_path(rsvp.event), class: "btn btn-success" %> <%= "or" %>
+      <%= link_to "Express Interest", interest_path(rsvp.event), class: "btn btn-primary" %>
+
+    <% elsif @member != current_member && current_member.commits.include?(rsvp.event)%>
+      <b><%= "You are currently RSVP'ed" %></b><br />
+    <% elsif @member != current_member && current_member.interests.include?(rsvp.event) %>
+      <%= "You are currently interested. RSVP!" %>
+      <%= link_to "RSVP", rsvp_path(rsvp.event), class: "btn btn-success" %>
+    <% elsif @member == current_member && rsvp.committed %>
+      <%= link_to "Cancel", cancel_rsvp_path(rsvp.event, rsvp), class: "btn btn-danger" %>
+    <% else %>
+      <%= "You are currently interested. RSVP!" %>
+      <%= link_to "RSVP", rsvp_path(rsvp.event), class: "btn btn-success" %>
     <%end%>
     <% end %>
     <br /><br />
