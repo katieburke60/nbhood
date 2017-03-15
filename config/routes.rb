@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get '/events/:event_id/rsvp/:id', to: 'events#destroy_rsvp', as: 'cancel_rsvp'
   get '/businesses/signup', to: 'business_accounts#new', as: 'new_business_account'
   post 'businesses/signup', to: 'business_accounts#create'
+  get '/business/followers', to: 'businesses#followers', as: 'business_followers'
+
   get '/business/:id/follow', to: 'followers#create', as: 'follow'
   get '/business/:id/unfollow', to: 'followers#destroy', as: 'unfollow'
 
