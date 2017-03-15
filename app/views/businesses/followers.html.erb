@@ -1,0 +1,25 @@
+<h2><%= "These are your followers!" %></h2>
+
+
+<% if @followers %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Visit Profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @followers.each do |member| %>
+    <tr>
+      <td>
+        <%= member.name.capitalize %>
+      </td>
+      <td>
+        <%= link_to "Profile", member_path(member) %>
+      </td>
+    </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
