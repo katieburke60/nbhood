@@ -1,12 +1,6 @@
 
-
-<style>
-  body {background-color: #A1FFFF}
-</style>
-
 <% if flash[:alert] %>
-
-  <div><%= flash[:alert] %></div>
+  <%= flash[:alert] %>
 <% end %>
 
 <h4><%= @event.name.titleize %></h4>

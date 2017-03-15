@@ -14,20 +14,24 @@ h1, .h1, h2, .h2, h3, .h3 {
 .container-fluid {
     margin-right: auto;
     margin-left: auto;
-    padding-left: 0px;
+    padding-left: 10px;
     padding-right: 0px;
 }
 
-.navbar-brand {
-    float: left;
-    padding: 15px 15px;
-    margin-left: 15px;
-    font-size: 18px;
-    line-height: 20px;
-    height: 50px;
+
+
+  .navbar {
+      margin-bottom: 0;
   }
 
 body {
   font-family: 'Libre Franklin', sans-serif;
+}
 
+h1 {
+  text-align: center;
+  font-size: 100px;
+  color: #545151;
+  padding: 50px 75px 100px 100px;
+  font-family: 'Shadows Into Light', cursive;
 }
