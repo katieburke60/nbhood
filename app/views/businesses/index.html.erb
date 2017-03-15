@@ -1,3 +1,4 @@
+
 <%= render 'layouts/businesses'%>
 
 <div>
@@ -7,11 +8,31 @@
     <%= form_tag('businesses', :method => 'get', :id => 'search form') do %>
     Search: <%= text_field_tag :search%>
     <%= submit_tag "Search", :name => nil %>
+
+<div class='form-group text-center'>
+  <h1>Find A Business</h1>
+  <%= form_tag('members', :method => 'get', :id => 'search form') do %>
+  Search
+  <br /> <%= text_field_tag :search, nil, style:"margin-top:5px; margin-bottom: 5px;"%>
+  <br />
+  <div class='col-sm-5'>
+  </div>
+  <div class='col-sm-2'>
+    <%= submit_tag "Search", name: nil, class: "form-control"%>
+
     <% end %>
   </div>
+</div>
+<br /><br />
 
-  <% if !@businesses.blank? %>
-  <table class="table">
+<% if !@businesses.blank? %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Events</th>
+    </tr>
+  </thead>
   <tbody>
     <% @businesses.each do |business| %>
     <tr>

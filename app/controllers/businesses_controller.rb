@@ -1,4 +1,5 @@
 class BusinessesController < ApplicationController
+  skip_before_action :redirect_to_create_profile, only: [:new, :create]
   def index
     @search = params[:search]
     if @search
@@ -29,7 +30,6 @@ class BusinessesController < ApplicationController
         render new_business_path and return
       end
     end
-    #binding.pry
     redirect_to businesses_path
   end
 
@@ -52,11 +52,15 @@ class BusinessesController < ApplicationController
     @business = Business.find_by(id: params[:id])
   end
 
+  def followers
+    @followers = current_business.members
+  end
+
 
   private
 
   def business_params
-    params.require.permit(:name, :about, :phone, :neighborhood)
+    params.require(:business).permit(:name, :about, :phone, :location)
   end
 
 end

@@ -1,10 +1,16 @@
 
-  <!-- text-align:center -->
 <% if flash[:alert] %>``
+
+<style>
+  body {background-color: #A1FFFF}
+</style>
+
+<% if flash[:alert] %>
+
   <div><%= flash[:alert] %></div>
 <% end %>
 
-<h4><%= @event.name %></h4>
+<h4><%= @event.name.titleize %></h4>
 <label>What:  </label> <%= @event.description %><br />
 <label>Where:  </label> <%= @event.location %><br />
 <label>When:  </label> <%= @event.datetime %><br />
@@ -13,19 +19,24 @@
 <label>Capacity:  </label> <%= @event.capacity %><br />
 <label>Business:  </label> <%= link_to @event.business.name.capitalize , business_path(@event.business) %><br />
 <% if @rsvp %>
-<%= form_for @event, {url: cancel_rsvp_path(@event, @rsvp), :method => :delete} do |f| %><br />
-<%= "You are currently RSVP'ed for this event" %><br />
-<%= f.submit "Cancel" %>
-<% end %>
+  <% if @rsvp.committed  %>
+    <div><%= "You are currently RSVP'ed for this event" %><br /></div>
+  <div><%= link_to "Cancel", cancel_rsvp_path(@event, @rsvp), class: "btn btn-danger" %></div>
+  <% elsif @event.active %>
+    <div><%= "You are currently interested in this event. You can RSVP to reserve your spot" %></div><br />
+    <div><%= link_to "RSVP", rsvp_path(@event), class: "btn btn-success" %></div><br />
+    <div><%= link_to "Cancel Interest", cancel_interest_path(@event, @rsvp), class: "btn btn-danger" %></div>
+  <% else %>
+    <div><%= "You have expressed interest in this event, but this event is now closed." %></div>
+  <% end %>
 <% else %>
-<% if is_logged_in? %>
-<%= form_for @event, {url: rsvp_path(@event), :method => :post} do |f| %><br />
-<%= "You are not RSVP'ed for this event (yet!)" %><br />
-<%= f.submit "RSVP" %>
-<% end %>
-
-<% end %>
+  <% if is_logged_in? %>
+    <div><%= "You are not RSVP'ed for this event (yet!)" %></div>
+    <div><%= link_to "RSVP", rsvp_path(@event), class: "btn btn-success" %></div>
+    <div><%= "Or if you do not want to commit yet you can express interest" %></div>
+    <div><%= link_to "Express Interest", interest_path(@event), class: "btn btn-primary" %></div>
+  <% end %>
 <% end %>
 <% if business_logged_in? && @event.business == current_business %>
-<%= link_to 'Delete', @event, method: :delete, data: {confirm: 'Are you sure?' }%>
+  <%= link_to 'Delete', @event, method: :delete, data: {confirm: 'Are you sure?' }%>
 <% end %>

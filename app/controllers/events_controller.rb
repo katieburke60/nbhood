@@ -1,12 +1,17 @@
 class EventsController < ApplicationController
+  skip_before_action :redirect_to_create_profile, only: [:index]
+
 
   def index
     # @category_ids = params[:categories]
+    @cat_restore = []
     if !params[:name].blank?
+      @name = params[:name]
       @events = Event.where("name like ?", "%#{params[:name]}%").where(active: true)
     end
     if params[:categories]
-      params[:categories].map do |category_id|
+
+      @cat_restore = params[:categories].map do |category_id|
         category_id.to_i
       end
       @events_cat = Event.joins(:event_categories).where("category_id = ?", params[:categories][0]).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][1])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][2])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][3])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][4])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][5]))
@@ -36,6 +41,7 @@ class EventsController < ApplicationController
   end
 
   def create
+
     @event = Event.new(event_params)
     time = params.require(:event).permit(:datetime)
     @event.datetime = format_datetime(time[:datetime])
@@ -65,7 +71,9 @@ class EventsController < ApplicationController
     @member = current_member
     @event.check_capacity
     if @event.active
-      Rsvp.find_or_create_by(member_id: @member.id, event_id: @event.id)
+      rsvp = Rsvp.find_or_create_by(member_id: @member.id, event_id: @event.id)
+      rsvp.committed = true
+      rsvp.save
       flash[:alert] = "RSVP successful. Event has been added to your calendar"
       redirect_to @event
     else
@@ -73,6 +81,23 @@ class EventsController < ApplicationController
       render '/events/show'
     end
   end
+
+  def interest
+    @event = Event.find_by(id: params[:id])
+    @member = current_member
+    @event.check_capacity
+    if @event.active
+      interest = Rsvp.find_or_create_by(member_id: @member.id, event_id: @event.id)
+      interest.committed = false
+      interest.save
+      flash[:alert] = "You have registered your interest. #{@event.name} has been added to your calendar. Please switch to RSVP anytime to ensure you are able to get in."
+      redirect_to @event
+    else
+      flash[:alert] = "There was an error registering your interest - The Event is no longer active"
+      render '/events/show'
+    end
+  end
+
 
   def destroy
     Event.find_by(id: params[:id]).destroy
@@ -86,6 +111,15 @@ class EventsController < ApplicationController
     flash[:alert] = "You have successfully cancelled"
     redirect_to event_path(@event)
   end
+
+  def destroy_interest
+    @event = Event.find_by(id: params[:event_id])
+    @interest = Rsvp.find_by(id: params[:id])
+    @interest.destroy
+    flash[:alert] = "You have successfully cancelled"
+    redirect_to event_path(@event)
+  end
+
 
   def category
     @category = Category.find_by(id: params[:category_id])
@@ -123,6 +157,12 @@ class EventsController < ApplicationController
 
   def category_params
     params.require(:categories)
+  end
+
+  def redirect_if_not_business
+    unless business_logged_in?
+      redirect_to events_path
+    end
   end
 
 

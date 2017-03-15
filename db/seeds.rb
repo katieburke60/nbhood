@@ -154,16 +154,16 @@
 
 
 
-                a1 = Member.create({name: "Ada", about: "cool", age: 34, gender: "female", relationship_status: "red", phone: 212-222-2121, hometown: "NYC"})
-                b2 = Member.create({name: "Aaron", about: "smart" , age: 23, gender: "male", relationship_status: "yellow", phone: 212-222-2122, hometown: "Philly"})
-                c3 = Member.create({name: "Alan", about: "fun", age: 54, gender: "male", relationship_status: "green", phone: 212-222-2123, hometown: "San Francisco"})
-                d4 = Member.create({name: "Steven", about: "teacherly", age: 32, gender: "male", relationship_status: "red", phone: 212-222-2124, hometown: "Paris"})
-                e5 = Member.create({name: "Joe", about: "direct", age: 36, gender: "male", relationship_status: "yellow", phone: 212-222-2125, hometown: "London"})
-                f6 = Member.create({name: "Niky", about: "helpful", age: 30, gender: "female", relationship_status: "green", phone: 212-222-2126, hometown: "Munich"})
-                g7 = Member.create({name: "Jess", about: "knowledgable", age: 33, gender: "female", relationship_status: "red", phone: 212-222-2127, hometown: "Moscow"})
-                h8 = Member.create({name: "Siobhan", about: "missed", age: 24, gender: "female", relationship_status: "yellow", phone: 212-222-2128, hometown: "Lima"})
-                j9 = Member.create({name: "Pushkin", about: "cute", age: 7, gender: "other", relationship_status: "green", phone: 212-222-2129, hometown: "Trenton"})
-                k10 = Member.create({name: "Orpheus", about: "memorable", age: 16, gender: "other", relationship_status: "red", phone: 212-222-2130, hometown: "Poughkeepsie"})
+                a1 = Member.create({name: "Ada", about: "cool", age: 34, gender: "female", relationship_status: "red", phone: 212-222-2121, hometown_state: "NYC"})
+                b2 = Member.create({name: "Aaron", about: "smart" , age: 23, gender: "male", relationship_status: "yellow", phone: 212-222-2122, hometown_state: "Philly"})
+                c3 = Member.create({name: "Alan", about: "fun", age: 54, gender: "male", relationship_status: "green", phone: 212-222-2123, hometown_state: "San Francisco"})
+                d4 = Member.create({name: "Steven", about: "teacherly", age: 32, gender: "male", relationship_status: "red", phone: 212-222-2124, hometown_state: "Paris"})
+                e5 = Member.create({name: "Joe", about: "direct", age: 36, gender: "male", relationship_status: "yellow", phone: 212-222-2125, hometown_state: "London"})
+                f6 = Member.create({name: "Niky", about: "helpful", age: 30, gender: "female", relationship_status: "green", phone: 212-222-2126, hometown_state: "Munich"})
+                g7 = Member.create({name: "Jess", about: "knowledgable", age: 33, gender: "female", relationship_status: "red", phone: 212-222-2127, hometown_state: "Moscow"})
+                h8 = Member.create({name: "Siobhan", about: "missed", age: 24, gender: "female", relationship_status: "yellow", phone: 212-222-2128, hometown_state: "Lima"})
+                j9 = Member.create({name: "Pushkin", about: "cute", age: 7, gender: "other", relationship_status: "green", phone: 212-222-2129, hometown_state: "Trenton"})
+                k10 = Member.create({name: "Orpheus", about: "memorable", age: 16, gender: "other", relationship_status: "red", phone: 212-222-2130, hometown_state: "Poughkeepsie"})
 
 ##business neighborhood_ids
               ab.neighborhood_id = Neighborhood.all[0].id

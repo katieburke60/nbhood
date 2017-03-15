@@ -1,0 +1,34 @@
+<%=flash[:message]%>
+
+<h1>Rate Your Experience</h1>
+
+<%if @rating.rsvp%>
+<h2>  <%=@rating.rsvp.event.name%></h2>
+<%end%>
+
+<%= form_for @rating, url: "/ratings/#{@rating.id}"  do |f| %>
+<%="Did you attend?"%>
+<%=check_box_tag(:attended) %>
+<%= label_tag(:attended, "I went!") %>
+<br>
+<h3>What did you think?</h3><br>
+<%= radio_button_tag(:rating, 1) %>
+<%= label_tag(:rating_1, "Not so good") %>
+<br>
+<%= radio_button_tag(:rating, 2) %>
+<%= label_tag(:rating_2, "Not bad") %>
+<br>
+<%= radio_button_tag(:rating, 3) %>
+<%= label_tag(:rating_3, "Pretty good") %>
+<br>
+<%= radio_button_tag(:rating, 4) %>
+<%= label_tag(:rating_4, "I liked it!") %>
+<br>
+<%= radio_button_tag(:rating, 5) %>
+<%= label_tag(:rating_5, "It was great!") %>
+<br>
+<%=f.text_area :comment, :rows => 10, style: 'width: 30%;', placeholder: "Tell us how it was!"%>
+<br>
+
+<%=f.submit%>
+<%end%>
