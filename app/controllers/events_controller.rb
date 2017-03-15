@@ -6,9 +6,10 @@ class EventsController < ApplicationController
       @events = Event.where("name like ?", "%#{params[:name]}%").where(active: true)
     end
     if params[:categories]
-      params[:categories].each do |category_id|
-        @events_cat = Event.joins(:event_categories).where("category_id = ?", category_id.to_i)
+      params[:categories].map do |category_id|
+        category_id.to_i
       end
+      @events_cat = Event.joins(:event_categories).where("category_id = ?", params[:categories][0]).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][1])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][2])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][3])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][4])).or(Event.joins(:event_categories).where("category_id = ?", params[:categories][5]))
     end
     if @events_cat && !@events
       @events = @events_cat.uniq
