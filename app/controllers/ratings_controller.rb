@@ -1,4 +1,6 @@
 class RatingsController < ApplicationController
+
+
   def new
     @rating = Rating.find_by(id: params[:id])
     if !@rating
@@ -7,6 +9,7 @@ class RatingsController < ApplicationController
   end
 
   def create
+
     @rating = Rating.find_by(id: params[:id])
     if @rating.update(ratings_params)
       @rating.complete = true
@@ -21,6 +24,7 @@ class RatingsController < ApplicationController
   private
   def ratings_params
     params.require(:ratings).permit(:rating, :comment)
+
   end
 
 
