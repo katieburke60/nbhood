@@ -2,7 +2,6 @@ class BusinessSessionsController < ApplicationController
   skip_before_action :redirect_if_not_logged_in
   skip_before_action :redirect_to_create_profile
 
-
   def create
     session.clear
     business_account = BusinessAccount.find_by(email: params[:email])

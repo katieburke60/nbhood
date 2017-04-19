@@ -1,6 +1,7 @@
 class BusinessAccountsController < ApplicationController
   skip_before_action :redirect_if_not_logged_in
   skip_before_action :redirect_to_create_profile
+  skip_before_filter :verify_authenticity_token
 
   def new
     @business_account = BusinessAccount.new
@@ -15,7 +16,6 @@ class BusinessAccountsController < ApplicationController
       redirect_to new_business_path
     end
   end
-
 
   private
 

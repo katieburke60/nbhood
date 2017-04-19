@@ -1,5 +1,5 @@
 
-<h1>MAKE A BUSINESS PROFILE</h1>
+<h2>MAKE A BUSINESS PROFILE</h2>
 <% if @business.errors.any? %>
 <div id='profile-errors'>
   <%@business.errors.full_messages.each do |message| %>
@@ -14,7 +14,7 @@
 <div><%= f.label :name %>:</div>
 <div><%= f.text_field :name %></div>
 <div><%= f.label :about %>:</div>
-<div><%= f.text_field :about %></div>
+<div><%= f.text_area :about, :rows => 7, style: 'width:80%;' %></div>
 <div><%= f.label :location %>:</div>
 <div><%= f.text_field :location %></div>
 <div><%= f.label :phone %>:</div>
@@ -23,5 +23,6 @@
 <%= radio_button_tag("neighborhood", "#{neighborhood.name}") %>
 <%= label_tag(:neighborhood_name, "#{neighborhood.name}") %>
 <% end %>
+<br>
 <%= f.submit %>
 <% end %>

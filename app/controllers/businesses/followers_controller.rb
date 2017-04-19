@@ -1,4 +1,5 @@
 class FollowersController < ApplicationController
+  
   def create
     business = Business.find_by(id: params[:id])
     current_member.businesses << business

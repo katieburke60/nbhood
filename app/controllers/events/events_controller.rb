@@ -1,12 +1,11 @@
 class EventsController < ApplicationController
-  skip_before_action :redirect_to_create_profile, only: [:index]
-
 
   def index
     # @category_ids = params[:categories]
     @cat_restore = []
     if !params[:name].blank?
       @name = params[:name]
+      #where are parameters coming from?
       @events = Event.where("name like ?", "%#{params[:name]}%").where(active: true)
     end
     if params[:categories]

@@ -42,11 +42,7 @@
       x = Category.create({ name: 'service', description: "philanthropic or other service related" })
       w = Category.create({ name: 'outside', description: "outside activities including sport and more relaxing"})
       v = Category.create({ name: 'music', description: "music" })
-      u = Category.create({ name: 'obscure', description: "unusual things" })
-      t = Category.create({ name: 'family-friendly', description: "good for kids" })
-      s = Category.create({ name: 'adults-only', description: "use your imagination" })
-      r = Category.create({ name: 'theater', description: "live performances" })
-      q = Category.create({ name: 'cerebral', description: "deep and thought-provoking" })
+
 
       business_acounts = BusinessAccount.create([
         {email: 'emailA@sample.com', password: 'password', password_confirmation: 'password'},
@@ -117,15 +113,14 @@
           # j = {datetime: Time.now, name: "discussion group", description: "Talk about it", location: "West Village penthouse", price: 0, price_description: "It's free!", capacity: 10, active: true, business_id: 10 }
           # ])
           a.categories << z << v
-          b.categories << q
-          c.categories << z
+          b.categories << x
+          c.categories << z << x
           d.categories << y
-          e.categories << w << t
+          e.categories << w << x
           f.categories << v
-          g.categories << w << u
-          h.categories << x << s
-          i.categories << r << q
-          j.categories << x
+          g.categories << w 
+          h.categories << x
+
 
           a.save
           b.save
@@ -137,22 +132,6 @@
           h.save
           i.save
           j.save
-
-          # q.events << a
-          # r.events << b
-          # s.events << c
-          # t.events << d
-          # u.events << e
-          # v.events << f
-          # w.events << g
-          # x.events << h
-          # y.events << i
-          # z.events << j
-
-
-
-
-
 
                 a1 = Member.create({name: "Ada", about: "cool", age: 34, gender: "female", relationship_status: "red", phone: 212-222-2121, hometown_state: "NYC"})
                 b2 = Member.create({name: "Aaron", about: "smart" , age: 23, gender: "male", relationship_status: "yellow", phone: 212-222-2122, hometown_state: "Philly"})
@@ -187,9 +166,6 @@
               hb.save
               ib.save
               jb.save
-
-
-
 
 ##members' neighborhood_id and account_id
                 a1.neighborhood_id = Neighborhood.all[0].id
@@ -234,7 +210,6 @@
                 j9.save
                 k10.save
 
-
 ##rsvps' member_ids and event_ids
                 Rsvp.create(member_id: Member.all[0].id, event_id:Event.all[9].id)
                 Rsvp.create(member_id:Member.all[1].id, event_id:Event.all[8].id)
@@ -247,45 +222,3 @@
                 Rsvp.create(member_id:Member.all[7].id, event_id:Event.all[2].id)
                 Rsvp.create(member_id:Member.all[8].id, event_id:Event.all[1].id)
                 Rsvp.create(member_id:Member.all[9].id, event_id:Event.all[0].id)
-
-
-
-
-
-#businesses and the members who follow them
-
-                # ab.members << a1
-                # bb.members << b2
-                # cb.members << c3
-                # db.members << d4
-                # eb.members << e5
-                # fb.members << f6
-                # gb.members << g7
-                # hb.members << h8
-                # ib.members << j9
-                # jb.members << k10
-
-
-##members and the businesses they follow
-                # a1.businesses << ab
-                # b2.businesses << bb
-                # c3.businesses << cb
-                # d4.businesses << db
-                # e5.businesses << eb
-                # f6.businesses << fb
-                # g7.businesses << gb
-                # h8.businesses << hb
-                # j9.businesses << ib
-                # k10.businesses << jb
-                #
-                #
-                # a1.save
-                # b2.save
-                # c3.save
-                # d4.save
-                # e5.save
-                # f6.save
-                # g7.save
-                # h8.save
-                # j9.save
-                # k10.save
